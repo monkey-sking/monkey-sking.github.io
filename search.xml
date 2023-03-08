@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/2023/03/08/hello-world/"/>
+      <url>/2023/03/08/hello-world/</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>running_page一键启动</title>
+      <link href="/2023/03/08/running_page%E4%B8%80%E9%94%AE%E5%90%AF%E5%8A%A8/"/>
+      <url>/2023/03/08/running_page%E4%B8%80%E9%94%AE%E5%90%AF%E5%8A%A8/</url>
+      
+        <content type="html"><![CDATA[<p>rm -r running_page&#x2F;<br>cd &#x2F;root&#x2F;桌面&#x2F;<br>git clone <a href="https://github.com/yihong0618/running_page.git">https://github.com/yihong0618/running_page.git</a> –depth&#x3D;1<br>cd &#x2F;root&#x2F;桌面&#x2F;running_page&#x2F;<br>python3 scripts&#x2F;garmin_sync.py <a href="mailto:&#x67;&#x61;&#114;&#109;&#x69;&#110;&#x40;&#103;&#x61;&#114;&#x6d;&#x69;&#110;&#x2e;&#x63;&#111;&#x6d;">&#x67;&#x61;&#114;&#109;&#x69;&#110;&#x40;&#103;&#x61;&#114;&#x6d;&#x69;&#110;&#x2e;&#x63;&#111;&#x6d;</a> password –only-run –is-cn<br>python3 scripts&#x2F;gen_svg.py –from-db –title “Runking run” –type github –athlete “Runking” –special-distance 40 –special-distance2 20 –special-color yellow –special-color2 red –output assets&#x2F;github.svg –use-localtime –min-distance 1<br>python3 scripts&#x2F;gen_svg.py –from-db –title “Runking run” –type grid –athlete “Runking”  –output assets&#x2F;grid.svg –min-distance 20.0 –special-color yellow –special-color2 red –special-distance 20 –special-distance2 40 –use-localtime<br>python3 scripts&#x2F;gen_svg.py –from-db –type circular –use-localtime<br>yarn develop –host 0.0.0.0 –port 8000</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>「备用」进阶指南 Python dev</title>
+      <link href="/2023/03/08/%E3%80%8C%E5%A4%87%E7%94%A8%E3%80%8D%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97%20Python%20dev/"/>
+      <url>/2023/03/08/%E3%80%8C%E5%A4%87%E7%94%A8%E3%80%8D%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97%20Python%20dev/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>注意：仅当你的VPS无法跑通容器且具备Python3开发环境时才使用本方案。</p></blockquote><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文档不面向零基础的小白读者，请确保你具备一定的Python项目开发经验并了解基础的Linux知识以应对本文未提及的偶发性异常。</p><p>本文的以国外某Ubuntu20.04 VPS设备为例简略介绍项目部署方法。请确保您的VPS已安装Python3，wget，git等必要依赖（模型文件存储在部署在 GitHub Release 里面，项目中的网络请求未配置前置的反向代理）。</p><h2 id="快速上手"><a href="#快速上手" class="headerlink" title="快速上手"></a>快速上手</h2><ol><li><strong>克隆代码</strong></li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> --depth=1 https://github.com/QIN2DIM/epic-awesome-gamer.git /home/epic</span><br></pre></td></tr></table></figure><ol start="2"><li>**处理 ****<code>requirements</code>**</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/epic &amp;&amp; pip install -r requirements.txt</span><br></pre></td></tr></table></figure><ol start="3"><li><p><strong>初始化项目并填写配置文件</strong></p><p>执行如下指令初始化项目，自动生成<code>config.yaml</code>。等待程序自动退出后以你喜欢的方式填写配置文件。</p></li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/epic/src &amp;&amp; python3 main.py </span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">配置文件的默认路径为 `/home/epic/src/config.yaml`，其中必填项为「账号信息」有关配置文件的介绍请参考其他新手指南教程。</span><br><span class="line"></span><br><span class="line">填写完毕后保存配置。</span><br></pre></td></tr></table></figure><ol start="4"><li><p><strong>下载并安装项目依赖</strong></p><p>安装 google-chrome（若已存在可跳过此步骤）。若需要管理员权限则使用 sudo 分步执行。</p></li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb &amp;&amp; apt install -y ./google-chrome-stable_current_amd64.deb <span class="built_in">rm</span> ./google-chrome-stable_current_amd64.deb</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">安装 xvfb</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install xvfb -y</span><br></pre></td></tr></table></figure><ol start="5"><li><strong>启动claim任务</strong></li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/epic/src &amp;&amp; xvfb-run python3 main.py claim</span><br></pre></td></tr></table></figure><ol start="6"><li><strong>启动 get 任务</strong></li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/epic/src &amp;&amp; xvfb-run python3 main.py get</span><br></pre></td></tr></table></figure><ol start="7"><li><strong>启动 unreal 任务</strong></li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/epic/src &amp;&amp; xvfb-run python3 main.py unreal</span><br></pre></td></tr></table></figure><ol start="8"><li><strong>部署定时任务</strong></li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/epic/src &amp;&amp; xvfb-run python3 main.py deploy</span><br></pre></td></tr></table></figure><h2 id="高级用法"><a href="#高级用法" class="headerlink" title="高级用法"></a>高级用法</h2><p>&lt; 暂时弃用 &gt;</p><ol><li>查看log文件（默认存储路径）</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># debug 运行日志</span></span><br><span class="line"><span class="built_in">cat</span> /home/epic/src/database/logs/runtime.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># error 错误日志</span></span><br><span class="line"><span class="built_in">cat</span> /home/epic/src/database/logs/error.log</span><br><span class="line"></span><br></pre></td></tr></table></figure><ol start="2"><li>查看运行截图（默认存储路径）</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> /home/epic/src/databse/screenshot</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>使用 TOR 浏览器下载 ZLibrary 资源，随时失效（临时解决办法）</title>
+      <link href="/2023/03/08/%E4%BD%BF%E7%94%A8%20TOR%20%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8B%E8%BD%BD%20ZLibrary%20%E8%B5%84%E6%BA%90%EF%BC%8C%E9%9A%8F%E6%97%B6%E5%A4%B1%E6%95%88%EF%BC%88%E4%B8%B4%E6%97%B6%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95%EF%BC%89/"/>
+      <url>/2023/03/08/%E4%BD%BF%E7%94%A8%20TOR%20%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8B%E8%BD%BD%20ZLibrary%20%E8%B5%84%E6%BA%90%EF%BC%8C%E9%9A%8F%E6%97%B6%E5%A4%B1%E6%95%88%EF%BC%88%E4%B8%B4%E6%97%B6%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[<p>title: 使用 TOR 浏览器下载 ZLibrary 资源，随时失效（临时解决办法）<br>date: 2023-03-08 10:00:00<br>categories:<br>tags: </p><p>通过TOR浏览器访问 Z-Library，首先在分享网盘里下载 TOR 浏览器，下载后点击安装，打开。</p><p><a href="https://pic.rmb.bdstatic.com/bjh/a281235ba24b2bcc239ad2cf8ea5405b.png"><img src="/media/%E4%BD%BF%E7%94%A8_TOR_%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8B%E8%BD%BD_Z-Library_%E5%8F%97%E9%99%90%E8%B5%84%E6%BA%90%EF%BC%8C%E4%B8%8D%E7%A8%B3%E5%AE%9A%EF%BC%88l%E4%B8%B4%E6%97%B6%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95%EF%BC%8C%E9%9A%8F%E6%97%B6%E5%A4%B1%E6%95%88%EF%BC%89.png" alt="使用 TOR 浏览器下载 Z-Library 受限资源，不稳定（l临时解决办法，随时失效）"></a></p><p>一般会提示正在链接 TOR 网络，第一次往往不成功，按照他的提示多试几次就行。之后复制 Z-Library 网站提供的链接，在 TOR 中粘贴访问。</p><p><strong><a href="http://loginzlib2vrak5zzpcocc3ouizykn6k5qecgj2tzlnab5wcbqhembyd.onion/">http://loginzlib2vrak5zzpcocc3ouizykn6k5qecgj2tzlnab5wcbqhembyd.onion/</a></strong></p><p><strong>或者</strong></p><p><strong><a href="http://zlibrary24tuxziyiyfr7zd46ytefdqbqd2axkmxm4o5374ptpc52fad.onion/">http://zlibrary24tuxziyiyfr7zd46ytefdqbqd2axkmxm4o5374ptpc52fad.onion/</a></strong></p><p>或者</p><p><strong><a href="http://bookszlibb74ugqojhzhg2a63w5i2atv5bqarulgczawnbmsb6s6qead.onion/">http://bookszlibb74ugqojhzhg2a63w5i2atv5bqarulgczawnbmsb6s6qead.onion/</a></strong></p><p>或者</p><p><strong><a href="http://zh.bookszlibb74ugqojhzhg2a63w5i2atv5bqarulgczawnbmsb6s6qead.onion/">http://zh.bookszlibb74ugqojhzhg2a63w5i2atv5bqarulgczawnbmsb6s6qead.onion/</a></strong></p><p><strong>如果不能访问</strong>，可以尝试换一下网桥（Tor浏览器设置 -&gt; 连接 -&gt; 新增网桥，比如 Windows 可以换成 Snowflake或者meek-azure，安卓选择obfs4内置网桥，其他客户端都可以试试），再回到新标签页，如果页面变成紫色且中间有搜索框，说明网桥建立成功。</p><p>接下来的步骤就和正常访问一样了。网速会稍微慢一点，不过不影响使用。</p><p><a href="https://pic.rmb.bdstatic.com/bjh/e607753871d8f841c23a17b4fa364471.png"><img src="/media/%E4%BD%BF%E7%94%A8_TOR_%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8B%E8%BD%BD_Z-Library_%E5%8F%97%E9%99%90%E8%B5%84%E6%BA%90%EF%BC%8C%E4%B8%8D%E7%A8%B3%E5%AE%9A%EF%BC%88%E4%B8%B4%E6%97%B6%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95%EF%BC%8C%E9%9A%8F%E6%97%B6%E5%A4%B1%E6%95%88%EF%BC%89.png" alt="使用 TOR 浏览器下载 Z-Library 受限资源，不稳定（临时解决办法，随时失效）"></a></p><h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ul><li>慢，可能是用的人太多</li><li>TOR 可能需要代理</li><li>文件可以发送→邮箱&#x2F;谷歌网盘，或者直接下载。</li></ul><h3 id="附一下Z-Library发来的信"><a href="#附一下Z-Library发来的信" class="headerlink" title="附一下Z-Library发来的信"></a>附一下Z-Library发来的信</h3><p><a href="https://pic.rmb.bdstatic.com/bjh/d97a729216a2d07a55c56d2f9fb2f211.jpeg"><img src="/media/%E4%BD%BF%E7%94%A8_TOR_%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8B%E8%BD%BD_ZLibrary_%E8%B5%84%E6%BA%90%EF%BC%8C%E9%9A%8F%E6%97%B6%E5%A4%B1%E6%95%88%EF%BC%88%E4%B8%B4%E6%97%B6%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95%EF%BC%89.jpg" alt="使用 TOR 浏览器下载 ZLibrary 资源，随时失效（临时解决办法）"></a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>AI与人类的关系</title>
+      <link href="/2022/12/12/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/1-%E9%9A%8F%E6%83%B3/AI%E4%B8%8E%E4%BA%BA%E7%B1%BB%E7%9A%84%E5%85%B3%E7%B3%BB/"/>
+      <url>/2022/12/12/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/1-%E9%9A%8F%E6%83%B3/AI%E4%B8%8E%E4%BA%BA%E7%B1%BB%E7%9A%84%E5%85%B3%E7%B3%BB/</url>
+      
+        <content type="html"><![CDATA[<h1 id="2022-12-12-13-40-29"><a href="#2022-12-12-13-40-29" class="headerlink" title="2022-12-12 13:40:29"></a>2022-12-12 13:40:29</h1><p>AI的能力是检索人类的已知（限制在互联网上的），而人类在此块的能力是用已知探索未知。</p><p>所以AI与人的关系是:<br>你知即我知<br>我知即你知</p><p>之前人类的工作主要是解决问题<br>今后人类的工作主要是提出问题<br>    指的是新的问题，不需要重复造轮子了</p><h1 id="2023-0218-1347"><a href="#2023-0218-1347" class="headerlink" title="2023 0218 1347"></a>2023 0218 1347</h1><p>本来多数程序都是复制粘贴。<br>现在ai是人类的知识库，即曾经解决过的问题，如果是人类已经解决过的，ai大概率也能给出解决方案。<br>所以未来要用人类的己知，去发现未知和解决未知，而不是基于某个人的已知。</p><h1 id="2023-0224-1615"><a href="#2023-0224-1615" class="headerlink" title="2023 0224 1615"></a>2023 0224 1615</h1><p>AI有可能最终垄断在在大机构、有钱人的手中<br>普通人用不起AI</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Oracle开放全部端口并关闭防火墙</title>
+      <link href="/2022/04/09/%E7%94%9F%E5%91%BD%E4%B8%8D%E6%81%AF%EF%BC%8C%E6%8A%98%E8%85%BE%E4%B8%8D%E6%AD%A2/%E7%BD%91%E7%AB%99%E6%9C%8D%E5%8A%A1/Oracle%E5%BC%80%E6%94%BE%E5%85%A8%E9%83%A8%E7%AB%AF%E5%8F%A3%E5%B9%B6%E5%85%B3%E9%97%AD%E9%98%B2%E7%81%AB%E5%A2%99/"/>
+      <url>/2022/04/09/%E7%94%9F%E5%91%BD%E4%B8%8D%E6%81%AF%EF%BC%8C%E6%8A%98%E8%85%BE%E4%B8%8D%E6%AD%A2/%E7%BD%91%E7%AB%99%E6%9C%8D%E5%8A%A1/Oracle%E5%BC%80%E6%94%BE%E5%85%A8%E9%83%A8%E7%AB%AF%E5%8F%A3%E5%B9%B6%E5%85%B3%E9%97%AD%E9%98%B2%E7%81%AB%E5%A2%99/</url>
+      
+        <content type="html"><![CDATA[<p>最后更新时间：2022年04月09日</p><p>登陆甲骨文后台打开实例<br>找到子网点击进去<br><img src="/media/enter_description_here.png" alt="enter description here"><br>点击进去安全组<br><img src="/media/enter_description_here-2.png" alt="enter description here"><br>修改安全组，为图描述选项随意！<br><img src="/media/enter_description_here-1.png" alt="enter description here"></p><h1 id="一、Ubuntu系统"><a href="#一、Ubuntu系统" class="headerlink" title="一、Ubuntu系统"></a>一、Ubuntu系统</h1><p>1、开放所有端口</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">iptables -P INPUT ACCEPT</span><br><span class="line">iptables -P FORWARD ACCEPT</span><br><span class="line">iptables -P OUTPUT ACCEPT</span><br><span class="line">iptables -F</span><br></pre></td></tr></table></figure><p>2、关闭或强制删除防火墙</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get purge netfilter-persistent &amp;&amp; reboot</span><br><span class="line">或 rm -rf /etc/iptables &amp;&amp; reboot</span><br></pre></td></tr></table></figure><h1 id="二、Centos系统"><a href="#二、Centos系统" class="headerlink" title="二、Centos系统"></a>二、Centos系统</h1><p>1、删除多余附件</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop oracle-cloud-agent</span><br><span class="line">systemctl disable oracle-cloud-agent</span><br><span class="line">systemctl stop oracle-cloud-agent-updater</span><br><span class="line">systemctl disable oracle-cloud-agent-updater</span><br></pre></td></tr></table></figure><p>2、停止firewall并禁止自启动</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld.service</span><br><span class="line">systemctl disable firewalld.service</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>批量获取京东分类信息</title>
+      <link href="/2021/11/11/%E5%B7%A5%E4%BD%9C%E8%AE%B0%E5%BD%95/%E6%89%B9%E9%87%8F%E8%8E%B7%E5%8F%96%E4%BA%AC%E4%B8%9C%E5%88%86%E7%B1%BB%E4%BF%A1%E6%81%AF/"/>
+      <url>/2021/11/11/%E5%B7%A5%E4%BD%9C%E8%AE%B0%E5%BD%95/%E6%89%B9%E9%87%8F%E8%8E%B7%E5%8F%96%E4%BA%AC%E4%B8%9C%E5%88%86%E7%B1%BB%E4%BF%A1%E6%81%AF/</url>
+      
+        <content type="html"><![CDATA[<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> linum = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#branchList&#x27;</span>).<span class="title function_">getElementsByTagName</span>(<span class="string">&quot;li&quot;</span>).<span class="property">length</span></span><br><span class="line"><span class="keyword">var</span> start = <span class="number">645</span></span><br><span class="line"><span class="keyword">var</span> text =<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> index = <span class="number">0</span>; index &lt; linum; index++) &#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> index2 = index + start</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> branch = <span class="string">&quot;branch_&quot;</span> + index2</span><br><span class="line"><span class="keyword">var</span> h4 = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(branch).<span class="property">parentNode</span>.<span class="property">parentNode</span>.<span class="property">parentNode</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;h4&quot;</span>).<span class="property">innerText</span></span><br><span class="line">    <span class="keyword">var</span> img = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(branch).<span class="title function_">querySelector</span>(<span class="string">&quot;img&quot;</span>).<span class="property">src</span></span><br><span class="line">    <span class="keyword">var</span> span = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(branch).<span class="title function_">querySelector</span>(<span class="string">&quot;span&quot;</span>).<span class="property">innerText</span></span><br><span class="line"></span><br><span class="line">    text = text+ <span class="string">&quot;\n&quot;</span> +index + <span class="string">&quot;&quot;</span>+img + <span class="string">&quot;&quot;</span> + span+ <span class="string">&quot;&quot;</span> +h4</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(text)</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>当代国家为什么要处于通货膨涨</title>
+      <link href="/2021/11/10/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/%E5%BD%93%E4%BB%A3%E5%9B%BD%E5%AE%B6%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%A4%84%E4%BA%8E%E9%80%9A%E8%B4%A7%E8%86%A8%E6%B6%A8/"/>
+      <url>/2021/11/10/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/%E5%BD%93%E4%BB%A3%E5%9B%BD%E5%AE%B6%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%A4%84%E4%BA%8E%E9%80%9A%E8%B4%A7%E8%86%A8%E6%B6%A8/</url>
+      
+        <content type="html"><![CDATA[<p>需要输入密码查看</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>角色、人性与本能</title>
+      <link href="/2021/11/10/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/%E8%A7%92%E8%89%B2%E3%80%81%E4%BA%BA%E6%80%A7%E4%B8%8E%E6%9C%AC%E8%83%BD/"/>
+      <url>/2021/11/10/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/%E8%A7%92%E8%89%B2%E3%80%81%E4%BA%BA%E6%80%A7%E4%B8%8E%E6%9C%AC%E8%83%BD/</url>
+      
+        <content type="html"><![CDATA[<p>角色：DNA-个人（大脑）-家庭-家族-地方-国家-人类<br>身份的不同：自私（利己）-利他</p><p>需求层次理论的问题是：把需求的角色只是限定在了 DNA、个人这两个角色上。在实际应用中总会感觉到缺陷。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>游戏灵感</title>
+      <link href="/2021/01/24/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/1-%E9%9A%8F%E6%83%B3/%E6%B8%B8%E6%88%8F%E7%81%B5%E6%84%9F/"/>
+      <url>/2021/01/24/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/1-%E9%9A%8F%E6%83%B3/%E6%B8%B8%E6%88%8F%E7%81%B5%E6%84%9F/</url>
+      
+        <content type="html"><![CDATA[<hr><p>随机病毒（种类、致死、传播、属性）<br>随机出国家（人口、盟友、属性）<br>游戏开始<br>随机延迟时间  </p><p>疫情收到报告  </p><p>玩家选择国策：闭关锁国&gt;不作干涉</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>股市与现实</title>
+      <link href="/2021/01/06/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/1-%E9%9A%8F%E6%83%B3/%E8%82%A1%E5%B8%82%E4%B8%8E%E7%8E%B0%E5%AE%9E/"/>
+      <url>/2021/01/06/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/1-%E9%9A%8F%E6%83%B3/%E8%82%A1%E5%B8%82%E4%B8%8E%E7%8E%B0%E5%AE%9E/</url>
+      
+        <content type="html"><![CDATA[<hr><p>股市与现实经济没有任何关系</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>线上需求、现实中的需求</title>
+      <link href="/2020/09/25/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/1-%E9%9A%8F%E6%83%B3/%E7%BA%BF%E4%B8%8A%E9%9C%80%E6%B1%82%E3%80%81%E7%8E%B0%E5%AE%9E%E4%B8%AD%E7%9A%84%E9%9C%80%E6%B1%82/"/>
+      <url>/2020/09/25/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/1-%E9%9A%8F%E6%83%B3/%E7%BA%BF%E4%B8%8A%E9%9C%80%E6%B1%82%E3%80%81%E7%8E%B0%E5%AE%9E%E4%B8%AD%E7%9A%84%E9%9C%80%E6%B1%82/</url>
+      
+        <content type="html"><![CDATA[<hr><p>线下原生需求：在没有互联网时就存在的需求<br>线上衍生的需求：在互联网上衍生的需求</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>问题的层级</title>
+      <link href="/2020/09/22/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/%E9%97%AE%E9%A2%98%E7%9A%84%E5%B1%82%E7%BA%A7/"/>
+      <url>/2020/09/22/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/%E9%97%AE%E9%A2%98%E7%9A%84%E5%B1%82%E7%BA%A7/</url>
+      
+        <content type="html"><![CDATA[<p><img src="/%E5%88%86%E5%B1%82.png"></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>互联网的恶</title>
+      <link href="/2020/09/14/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/1-%E9%9A%8F%E6%83%B3/%E4%BA%92%E8%81%94%E7%BD%91%E7%9A%84%E6%81%B6/"/>
+      <url>/2020/09/14/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/1-%E9%9A%8F%E6%83%B3/%E4%BA%92%E8%81%94%E7%BD%91%E7%9A%84%E6%81%B6/</url>
+      
+        <content type="html"><![CDATA[<hr><p>互联网或者说信息传播的提速，最大的恶是杀死了普通人</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>未来趋势</title>
+      <link href="/2020/09/13/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/1-%E9%9A%8F%E6%83%B3/%E6%9C%AA%E6%9D%A5%E8%B6%8B%E5%8A%BF/"/>
+      <url>/2020/09/13/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/1-%E9%9A%8F%E6%83%B3/%E6%9C%AA%E6%9D%A5%E8%B6%8B%E5%8A%BF/</url>
+      
+        <content type="html"><![CDATA[<hr><p>someone do something anywhere</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>人、物、事、信息</title>
+      <link href="/2020/09/07/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/1-%E9%9A%8F%E6%83%B3/%E4%BA%BA%E3%80%81%E7%89%A9%E3%80%81%E4%BA%8B%E3%80%81%E4%BF%A1%E6%81%AF/"/>
+      <url>/2020/09/07/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/1-%E9%9A%8F%E6%83%B3/%E4%BA%BA%E3%80%81%E7%89%A9%E3%80%81%E4%BA%8B%E3%80%81%E4%BF%A1%E6%81%AF/</url>
+      
+        <content type="html"><![CDATA[<hr><p>人<br>物<br>事<br>信息</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>信息-知识-技能-思维模式-逻辑推理能力</title>
+      <link href="/2020/08/29/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/1-%E9%9A%8F%E6%83%B3/%E4%BF%A1%E6%81%AF-%E7%9F%A5%E8%AF%86-%E6%8A%80%E8%83%BD-%E6%80%9D%E7%BB%B4%E6%A8%A1%E5%BC%8F-%E9%80%BB%E8%BE%91%E6%8E%A8%E7%90%86%E8%83%BD%E5%8A%9B/"/>
+      <url>/2020/08/29/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/1-%E9%9A%8F%E6%83%B3/%E4%BF%A1%E6%81%AF-%E7%9F%A5%E8%AF%86-%E6%8A%80%E8%83%BD-%E6%80%9D%E7%BB%B4%E6%A8%A1%E5%BC%8F-%E9%80%BB%E8%BE%91%E6%8E%A8%E7%90%86%E8%83%BD%E5%8A%9B/</url>
+      
+        <content type="html"><![CDATA[<hr><p>信息变成知识<br>知识变成技能<br>技能变成思维模式<br>思维模式变成逻辑推理能力</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>关于美的思考</title>
+      <link href="/2020/08/25/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/1-%E9%9A%8F%E6%83%B3/%E5%85%B3%E4%BA%8E%E7%BE%8E%E7%9A%84%E6%80%9D%E8%80%83/"/>
+      <url>/2020/08/25/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/1-%E9%9A%8F%E6%83%B3/%E5%85%B3%E4%BA%8E%E7%BE%8E%E7%9A%84%E6%80%9D%E8%80%83/</url>
+      
+        <content type="html"><![CDATA[<hr><p>美是生物本能+大脑修饰的产物<br>人美：代表着个体生存的可能性，和后代可能延续的特性<br>景美：对自身安全、未来资源的影响</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>通货膨胀的思考</title>
+      <link href="/2020/08/18/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/1-%E9%9A%8F%E6%83%B3/%E9%80%9A%E8%B4%A7%E8%86%A8%E8%83%80%E7%9A%84%E6%80%9D%E8%80%83/"/>
+      <url>/2020/08/18/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/1-%E9%9A%8F%E6%83%B3/%E9%80%9A%E8%B4%A7%E8%86%A8%E8%83%80%E7%9A%84%E6%80%9D%E8%80%83/</url>
+      
+        <content type="html"><![CDATA[<hr><p>为什么现在这个世界的经济是通货膨胀的</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>人类天性与经济循环</title>
+      <link href="/2020/08/07/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/1-%E9%9A%8F%E6%83%B3/%E4%BA%BA%E7%B1%BB%E5%A4%A9%E6%80%A7%E4%B8%8E%E7%BB%8F%E6%B5%8E%E5%BE%AA%E7%8E%AF/"/>
+      <url>/2020/08/07/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/1-%E9%9A%8F%E6%83%B3/%E4%BA%BA%E7%B1%BB%E5%A4%A9%E6%80%A7%E4%B8%8E%E7%BB%8F%E6%B5%8E%E5%BE%AA%E7%8E%AF/</url>
+      
+        <content type="html"><![CDATA[<hr><p>人的天性是在资源富裕时，积攒资源。这个会造成紧缩。<br>股市等一系列投资行为，诱使人们将钱花出去，避免了通货通货紧缩。<br>这个是现在世界的经济模型。  </p><p>现在这个模型造成了  </p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>统治阶级的目的、资本的目的</title>
+      <link href="/2020/08/07/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/1-%E9%9A%8F%E6%83%B3/%E7%BB%9F%E6%B2%BB%E9%98%B6%E7%BA%A7%E7%9A%84%E7%9B%AE%E7%9A%84%E3%80%81%E8%B5%84%E6%9C%AC%E7%9A%84%E7%9B%AE%E7%9A%84/"/>
+      <url>/2020/08/07/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/1-%E9%9A%8F%E6%83%B3/%E7%BB%9F%E6%B2%BB%E9%98%B6%E7%BA%A7%E7%9A%84%E7%9B%AE%E7%9A%84%E3%80%81%E8%B5%84%E6%9C%AC%E7%9A%84%E7%9B%AE%E7%9A%84/</url>
+      
+        <content type="html"><![CDATA[<hr><p>统治阶级的目的是统治国家<br>资本的目的是扩张</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>游戏的未来趋势</title>
+      <link href="/2020/07/23/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/1-%E9%9A%8F%E6%83%B3/%E6%B8%B8%E6%88%8F%E7%9A%84%E6%9C%AA%E6%9D%A5%E8%B6%8B%E5%8A%BF/"/>
+      <url>/2020/07/23/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/1-%E9%9A%8F%E6%83%B3/%E6%B8%B8%E6%88%8F%E7%9A%84%E6%9C%AA%E6%9D%A5%E8%B6%8B%E5%8A%BF/</url>
+      
+        <content type="html"><![CDATA[<hr><p>看广告拿奖励的游戏是对游戏用户群体的拓展。  </p><p>游戏行业规律：<br>第一阶段：全部玩家对游戏付费；<br>第二阶段：部分玩家对游戏付费；<br>第三阶段：全部玩家对游戏不付费，由外部付费。<br>第四阶段：？？？  </p><p>推广开来，到其他行业：<br>第一阶段：我们产品服务的对象是用户。<br>第二阶段：我们产品服务对象是一部分用户，另外一部分用户辅助服务目标用户。<br>第三阶段：我们的用户是产品，我们原先的产品是辅助现在的产品的。  </p><p>这个过程的前提是要有生产力过剩。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>笔画与常用字</title>
+      <link href="/2020/07/18/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/1-%E9%9A%8F%E6%83%B3/%E7%AC%94%E7%94%BB%E4%B8%8E%E5%B8%B8%E7%94%A8%E5%AD%97/"/>
+      <url>/2020/07/18/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/1-%E9%9A%8F%E6%83%B3/%E7%AC%94%E7%94%BB%E4%B8%8E%E5%B8%B8%E7%94%A8%E5%AD%97/</url>
+      
+        <content type="html"><![CDATA[<hr><p>撇捺可以感觉到大多数人是右撇子<br>一二三四五六七八九十<br>笔画最多的是四</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>习惯养成</title>
+      <link href="/2020/07/17/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/1-%E9%9A%8F%E6%83%B3/%E4%B9%A0%E6%83%AF%E5%85%BB%E6%88%90/"/>
+      <url>/2020/07/17/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/1-%E9%9A%8F%E6%83%B3/%E4%B9%A0%E6%83%AF%E5%85%BB%E6%88%90/</url>
+      
+        <content type="html"><![CDATA[<hr><p>习惯养成的前提是目标的树立<br>好的游戏是要让玩家自己树立目标<br>而不是替玩家指定目标</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>国力</title>
+      <link href="/2020/07/15/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/1-%E9%9A%8F%E6%83%B3/%E5%9B%BD%E5%8A%9B/"/>
+      <url>/2020/07/15/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/1-%E9%9A%8F%E6%83%B3/%E5%9B%BD%E5%8A%9B/</url>
+      
+        <content type="html"><![CDATA[<hr><p>国力<br>是整合国内资源与国外竞争合作的能力</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>DNA、人、AI，记忆与传承</title>
+      <link href="/2020/06/02/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/DNA%E3%80%81%E4%BA%BA%E3%80%81AI%EF%BC%8C%E8%AE%B0%E5%BF%86%E4%B8%8E%E4%BC%A0%E6%89%BF/"/>
+      <url>/2020/06/02/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/DNA%E3%80%81%E4%BA%BA%E3%80%81AI%EF%BC%8C%E8%AE%B0%E5%BF%86%E4%B8%8E%E4%BC%A0%E6%89%BF/</url>
+      
+        <content type="html"><![CDATA[<p>DNA 的传承靠的是生命：生物。<br>人类的传承是记忆：书本。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>那成功的根本性原因</title>
+      <link href="/2020/06/02/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/%E6%88%90%E5%8A%9F%E7%9A%84%E6%A0%B9%E6%9C%AC%E6%80%A7%E5%8E%9F%E5%9B%A0/"/>
+      <url>/2020/06/02/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/%E6%88%90%E5%8A%9F%E7%9A%84%E6%A0%B9%E6%9C%AC%E6%80%A7%E5%8E%9F%E5%9B%A0/</url>
+      
+        <content type="html"><![CDATA[<p>成功的根本性原因是做到别人做不到的事情。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>批量删除佳明训练记录</title>
+      <link href="/2020/05/23/%E4%B8%80%E4%BA%9B%E7%A0%94%E7%A9%B6/%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4%E4%BD%B3%E6%98%8E%E8%AE%AD%E7%BB%83%E8%AE%B0%E5%BD%95/"/>
+      <url>/2020/05/23/%E4%B8%80%E4%BA%9B%E7%A0%94%E7%A9%B6/%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4%E4%BD%B3%E6%98%8E%E8%AE%AD%E7%BB%83%E8%AE%B0%E5%BD%95/</url>
+      
+        <content type="html"><![CDATA[<p>之前把谷歌时间轴的记录全部导入了佳明<br>这些记录大多数记录都不正确或准确<br>现在想删除掉</p><p>使用高级功能筛选出要删除的记录<br>F12使用以下代码：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt; <span class="number">100</span>; i++) &#123;</span><br><span class="line">    <span class="comment">//显示出删除按钮</span></span><br><span class="line">str = <span class="string">&quot;#pageContainer &gt; div &gt; div &gt; div.row-fluid.list-items.flexItemAutoHeight &gt; ul &gt; li:nth-child(&quot;</span></span><br><span class="line">str+=i</span><br><span class="line">str+=<span class="string">&quot;) &gt; div.pull-left.edit-btn.edit-col &gt; button.icon-trash.js-activity-delete.has-tooltip&quot;</span></span><br><span class="line">    <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(str).<span class="title function_">click</span>();</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(i)</span><br><span class="line"></span><br><span class="line">   <span class="comment">//确认删除</span></span><br><span class="line">del = <span class="string">&quot;#pageContainer &gt; div &gt; div &gt; div.row-fluid.list-items.flexItemAutoHeight &gt; ul &gt; li:nth-child(&quot;</span></span><br><span class="line">del +=i</span><br><span class="line">del +=<span class="string">&quot;) &gt; div.activity-cover.animated &gt; div.delete-buttons &gt; button.btn.btn-small.btn-danger.delete-yes.right-xs&quot;</span>    </span><br><span class="line">    <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(del).<span class="title function_">click</span>();</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>自问自答</title>
+      <link href="/2020/05/12/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/%E8%87%AA%E9%97%AE%E8%87%AA%E7%AD%94/"/>
+      <url>/2020/05/12/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/%E8%87%AA%E9%97%AE%E8%87%AA%E7%AD%94/</url>
+      
+        <content type="html"><![CDATA[<ul><li>2020年05月12日 21:38:48</li></ul><p>Q：为什么光源在下方时，会使得场景或人物变得非常怪异？</p><p>A：从方向上来说：自从生命诞生以来，生物接收到的光源绝大多数是太阳散发的。<br>从光线上来说：是太阳照射到物体上时，光线的分布是均的。而光源下方时光线的分布非常造成大片的阴影。<br>阴影造成完整信息的缺失，与常见的物品有着巨大的差异。</p><ul><li>待续……</li></ul>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>社区电商</title>
+      <link href="/2020/05/12/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/%E7%A4%BE%E5%8C%BA%E7%94%B5%E5%95%86/"/>
+      <url>/2020/05/12/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/%E7%A4%BE%E5%8C%BA%E7%94%B5%E5%95%86/</url>
+      
+        <content type="html"><![CDATA[<p>#社区电商<br>    之前的购物平台，多数交易是买家的需求驱动来达成的。<br>比如京东、淘宝、超市、小卖铺。是买家作为交易的发起方。</p><pre><code>这类购物平台库存的特点是在一定范围内大而全。</code></pre><p>（一定范围指的京东与小卖铺这类的对比）<br>大而全：<br>1种类多，比如手机、电脑……<br>2细分后同一种商品有多个，比如笔记本有多种。</p><p>造成购物平台此特点的根本性原因是：<br>        1.买家的不确定性。<br>        你永远不会知道你的下一位顾客是谁。</p><pre><code>    2.具体某个玩家需求的不确定性。</code></pre><p>有些买家在进入平台已经明确了自己所需要购买商品的属性（性价比、功能性、体积大小、重量……），这类买家的需求已经明确到某个具体化的商品上。</p><p>绝大多数的买家的需求是不确定的，只是一个大概。比如口渴了要买瓶水。这时买家是不会有一个具体化的商品需求的。需要进入平台后进一步对比商品的属性。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>黑苹果</title>
+      <link href="/2020/03/22/%E4%B8%80%E4%BA%9B%E7%A0%94%E7%A9%B6/%E9%BB%91%E8%8B%B9%E6%9E%9C/"/>
+      <url>/2020/03/22/%E4%B8%80%E4%BA%9B%E7%A0%94%E7%A9%B6/%E9%BB%91%E8%8B%B9%E6%9E%9C/</url>
+      
+        <content type="html"><![CDATA[<ul><li>下载镜像的问题</li></ul><p>之前直接下载的官方的镜像，然后写U盘的。</p><p>实际应该是下载带EFI的</p><ul><li>时间机器的问题</li></ul><p>低版本的时间机器是无法在高版本的系统上恢复的</p><p>但是可以使用迁移助手！！！！</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>心智模式</title>
+      <link href="/2019/08/22/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/%E8%AE%B0%E5%BD%95%E7%94%9F%E6%B4%BB/%E5%BF%83%E6%99%BA%E6%A8%A1%E5%BC%8F/"/>
+      <url>/2019/08/22/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/%E8%AE%B0%E5%BD%95%E7%94%9F%E6%B4%BB/%E5%BF%83%E6%99%BA%E6%A8%A1%E5%BC%8F/</url>
+      
+        <content type="html"><![CDATA[<p><img src="/2019-08-22-16-05-51.jpg"></p><p><a href="http://www.zreading.cn/archives/7247.html">心智模式</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Excel文本排行的问题</title>
+      <link href="/2019/06/18/%E5%B7%A5%E4%BD%9C%E8%AE%B0%E5%BD%95/Excel%E6%96%87%E6%9C%AC%E6%8E%92%E8%A1%8C%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+      <url>/2019/06/18/%E5%B7%A5%E4%BD%9C%E8%AE%B0%E5%BD%95/Excel%E6%96%87%E6%9C%AC%E6%8E%92%E8%A1%8C%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[<h1 id="初始"><a href="#初始" class="headerlink" title="初始"></a>初始</h1><p>手头有一批数据要处理，表头和内容不太匹配。</p><ul><li>原始数据大概是这个样子</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">项目 | 价格 | 类别 | 描述</span><br><span class="line">尺子 | 描述：量东西用的 | 价格：￥2 | 类别：学习</span><br><span class="line">本子 | 描述：写作业用 | 价格：￥8</span><br><span class="line">Tip | 价格：￥18 | 描述：hello world | 类别：娱乐</span><br></pre></td></tr></table></figure><ul><li>目标期望是这个样子</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">项目 | 价格 | 类别 | 描述</span><br><span class="line">尺子 | 价格：￥2 |类别：学习 | 描述：量东西用的</span><br><span class="line">本子 | 价格：￥8 | | 描述：写作业用</span><br><span class="line">Tip | 价格：￥18 | 类别：娱乐 | 描述：hello world</span><br></pre></td></tr></table></figure><h1 id="试错的过程"><a href="#试错的过程" class="headerlink" title="试错的过程"></a>试错的过程</h1><p>刚开始想到的是使用excel的排序进行处理<br>首先进行的是转置<br>然后对每个单元格按照表头关键字添加了数字，进行辅助排序<br>等进行排序的时候，发现只有前面几列数量排序了，而后面的完全没有动</p><p>针对排序不动的问题，试了半天，也没有试出个所以然来<br>数据量太大，排查起来也不太方便，到后面排查出问题所在也不知还要多长时间<br>这个方向上果断选择了放弃</p><p>#新的方法<br>其实之前使用过这个方法，但操作起来太繁琐，一般不太愿意尝试。<br>使用Excel排序的办法受阻后，第二天想到了这个办法</p><ul><li>1.准备好源数据</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">项目 | 价格 | 类别 | 描述</span><br><span class="line">尺子 | 描述：量东西用的 | 价格：￥2 | 类别：学习</span><br><span class="line">本子 | 描述：写作业用 | 价格：￥8</span><br><span class="line">Tip | 价格：￥18 | 描述：hello world | 类别：娱乐</span><br></pre></td></tr></table></figure><ul><li>2.去除内容，保留关键字<br>（目的是做位置映射）</li></ul><p>使用替换（关键字*）或其他方法都可以</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">项目 | 价格 | 类别 | 描述</span><br><span class="line">尺子 | 描述： | 价格： | 类别：</span><br><span class="line">本子 | 描述： | 价格：</span><br><span class="line">Tip | 价格： | 描述： | 类别：</span><br></pre></td></tr></table></figure><ul><li><ol start="3"><li>获得关键字的位置</li></ol></li></ul><p>新建个Sheet，将源数据的表头和第一列复制过来   </p><p>在新Sheet中B2中填写下面的公式，随机填充所有格子：<br>    <code>=MATCH(B$1,&#39;去除内容，保留关键字&#39;!2:2,0)</code><br>上述公式得到的结果为数字：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">项目 | 价格： | 类别： | 描述：</span><br><span class="line">尺子 | 3 | 4 | 2</span><br><span class="line">本子 | 3 | #N/A | 2</span><br><span class="line">Tip | 2 | 4 | 3</span><br></pre></td></tr></table></figure><ul><li><ol start="4"><li>将关键字的位置转化为Excel单元格的位置</li></ol></li></ul><p>同样新建个Sheet，将源数据的表头和第一列复制过来</p><p>同第3步一样，在新Sheet中按行填写如下公式：<br>    <code>=SUBSTITUTE(ADDRESS(1,获得关键字的位置!B2,4),&quot;1&quot;,&quot;&quot;)&amp;ROW()</code><br>上述公式得到的结果为字母列、数字行：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">项目 | 价格： | 类别： | 描述：</span><br><span class="line">尺子 | C2 | D2 | B2</span><br><span class="line">本子 | C3 | #N/A | B3</span><br><span class="line">Tip | B4 | D4 | C4</span><br></pre></td></tr></table></figure><ul><li>5.根据字母列、数字行重新取源文件的内容</li></ul><p>公式如下：<br>    <code>=INDIRECT(&quot;源数据!&quot;&amp;转化为excel位置!B2)</code></p><p>最终输出结果：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">项目 | 价格： | 类别： | 描述：</span><br><span class="line">尺子 | 价格：￥2 | 类别：学习 | 描述：量东西用的</span><br><span class="line">本子 | 价格：￥8 | #N/A | 描述：写作业用</span><br><span class="line">Tip | 价格：￥18 | 类别：娱乐 | 描述：hello world</span><br></pre></td></tr></table></figure><p>#事后总结</p><p>新的办法有点复杂，最关键的是：<br>1.内容中带有关键字，没有的话就没有办法区分的<br>2.使用关键字作映射，这个可能理解起来有点麻烦</p><p>能使用Excel自带的排序是最好的<br>但是关于excel为什么不能正确排序<br>由于数据量大、单元格内容复杂等原因实在不好排查<br>现在是没有时间去弄清楚的，最重要的是可以解决问题。</p><p>新的办法是可以将3、4、5全部合并的<br>但合并后公式太长，阅读和理解起来都太复杂<br>个人也不是太喜欢<br>这种分步骤的办法还有另外一个好处是排错方便<br>某一步出错了，打开相应的Sheet作修改就好了</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Git自动更新</title>
+      <link href="/2019/06/17/%E5%B7%A5%E4%BD%9C%E8%AE%B0%E5%BD%95/Git%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0/"/>
+      <url>/2019/06/17/%E5%B7%A5%E4%BD%9C%E8%AE%B0%E5%BD%95/Git%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0/</url>
+      
+        <content type="html"><![CDATA[<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">Echo</span> off</span><br><span class="line"><span class="built_in">color</span> <span class="number">0</span>e</span><br><span class="line"><span class="built_in">Title</span> Git 更新</span><br><span class="line">:begin</span><br><span class="line"><span class="function">d:</span></span><br><span class="line"><span class="function"><span class="title">cd</span> <span class="title">D</span>:\1\2</span></span><br><span class="line"><span class="function"><span class="title">cls</span></span></span><br><span class="line"><span class="function"><span class="title">Echo</span>.请选择需要的操作</span></span><br><span class="line"><span class="function"><span class="title">Echo</span>1 更新主分支</span></span><br><span class="line"><span class="function"><span class="title">Echo</span>2 更新2</span></span><br><span class="line"><span class="function"><span class="title">Echo</span>.</span></span><br><span class="line"><span class="function"><span class="title">Echo</span>3 切换到主分支</span></span><br><span class="line"><span class="function"><span class="title">Echo</span>4 切换到2</span></span><br><span class="line"><span class="function"><span class="title">Echo</span>.</span></span><br><span class="line"><span class="function">::<span class="title">Echo</span> 6 服务器切换为内网</span></span><br><span class="line"><span class="function">::<span class="title">Echo</span> 7 服务器切换为外网</span></span><br><span class="line"><span class="function"><span class="title">Echo</span>8 更新3</span></span><br><span class="line"><span class="function"><span class="title">Echo</span>.</span></span><br><span class="line"><span class="function"><span class="title">Echo</span>9 强更主分支</span></span><br><span class="line"><span class="function"><span class="title">Echo</span>.</span></span><br><span class="line"><span class="function"><span class="title">Echo</span>0 退出</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">Set</span> /<span class="title">P</span> <span class="title">Choice</span>=请输入数字 ，然后按回车：</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">If</span> <span class="title">not</span> &quot;%<span class="title">Choice</span>%&quot;==&quot;&quot; (</span></span><br><span class="line"><span class="function">  <span class="title">If</span> &quot;%<span class="title">Choice</span>%&quot;==&quot;0&quot; (</span></span><br><span class="line"><span class="function"><span class="title">exit</span></span></span><br><span class="line"><span class="function">  )  </span></span><br><span class="line"><span class="function">  </span></span><br><span class="line"><span class="function">  <span class="title">If</span> &quot;%<span class="title">Choice</span>%&quot;==&quot;9&quot; (</span></span><br><span class="line"><span class="function"><span class="title">Echo</span> <span class="title">on</span> </span></span><br><span class="line"><span class="function"><span class="title">git</span> <span class="title">fetch</span> --<span class="title">all</span> &amp;&amp; <span class="title">git</span> <span class="title">reset</span> --<span class="title">hard</span> <span class="title">origin</span>/<span class="title">master</span> &amp;&amp; <span class="title">git</span> <span class="title">pull</span></span></span><br><span class="line"><span class="function"><span class="title">pause</span>  </span></span><br><span class="line"><span class="function"><span class="title">Echo</span> <span class="title">off</span> </span></span><br><span class="line"><span class="function"><span class="title">goto</span> :<span class="title">begin</span></span></span><br><span class="line"><span class="function">  )</span></span><br><span class="line"><span class="function">  </span></span><br><span class="line"><span class="function">  <span class="title">If</span> &quot;%<span class="title">Choice</span>%&quot;==&quot;8&quot; (</span></span><br><span class="line"><span class="function"><span class="title">Echo</span> <span class="title">on</span> </span></span><br><span class="line"><span class="function"><span class="title">cd</span> <span class="title">D</span>:\3 </span></span><br><span class="line"><span class="function"><span class="title">git</span> <span class="title">pull</span> <span class="title">origin</span> <span class="title">master</span> </span></span><br><span class="line"><span class="function"><span class="title">pause</span> </span></span><br><span class="line"><span class="function"><span class="title">cd</span> <span class="title">D</span>:\1\2 </span></span><br><span class="line"><span class="function"><span class="title">Echo</span> <span class="title">off</span> </span></span><br><span class="line"><span class="function"><span class="title">goto</span> :<span class="title">begin</span></span></span><br><span class="line"><span class="function">  )</span></span><br><span class="line"><span class="function">  </span></span><br><span class="line"><span class="function">  <span class="title">If</span> &quot;%<span class="title">Choice</span>%&quot;==&quot;7&quot; (</span></span><br><span class="line"><span class="function"><span class="title">goto</span> <span class="title">serverA</span> </span></span><br><span class="line"><span class="function"><span class="title">goto</span> :<span class="title">begin</span></span></span><br><span class="line"><span class="function">  )</span></span><br><span class="line"><span class="function">  </span></span><br><span class="line"><span class="function">  <span class="title">If</span> &quot;%<span class="title">Choice</span>%&quot;==&quot;6&quot; (</span></span><br><span class="line"><span class="function"><span class="title">goto</span> <span class="title">serverB</span> </span></span><br><span class="line"><span class="function"><span class="title">goto</span> :<span class="title">begin</span></span></span><br><span class="line"><span class="function">  )</span></span><br><span class="line"><span class="function">  </span></span><br><span class="line"><span class="function">  <span class="title">If</span> &quot;%<span class="title">Choice</span>%&quot;==&quot;4&quot; (</span></span><br><span class="line"><span class="function"><span class="title">Echo</span> <span class="title">on</span> </span></span><br><span class="line"><span class="function"><span class="title">git</span> <span class="title">checkout</span> 3 </span></span><br><span class="line"><span class="function"><span class="title">pause</span> </span></span><br><span class="line"><span class="function"><span class="title">Echo</span> <span class="title">off</span> </span></span><br><span class="line"><span class="function"><span class="title">goto</span> :<span class="title">begin</span></span></span><br><span class="line"><span class="function">  )</span></span><br><span class="line"><span class="function">  </span></span><br><span class="line"><span class="function">  <span class="title">If</span> &quot;%<span class="title">Choice</span>%&quot;==&quot;3&quot; (</span></span><br><span class="line"><span class="function"><span class="title">Echo</span> <span class="title">on</span> </span></span><br><span class="line"><span class="function"><span class="title">git</span> <span class="title">checkout</span> <span class="title">master</span> </span></span><br><span class="line"><span class="function"><span class="title">pause</span>  </span></span><br><span class="line"><span class="function"><span class="title">Echo</span> <span class="title">off</span> </span></span><br><span class="line"><span class="function"><span class="title">goto</span> :<span class="title">begin</span></span></span><br><span class="line"><span class="function">  )</span></span><br><span class="line"><span class="function">  </span></span><br><span class="line"><span class="function">  <span class="title">If</span> &quot;%<span class="title">Choice</span>%&quot;==&quot;2&quot; (</span></span><br><span class="line"><span class="function"><span class="title">Echo</span> <span class="title">on</span> </span></span><br><span class="line"><span class="function"><span class="title">git</span> <span class="title">pull</span> <span class="title">origin</span> 3 </span></span><br><span class="line"><span class="function"><span class="title">pause</span>  </span></span><br><span class="line"><span class="function"><span class="title">Echo</span> <span class="title">off</span> </span></span><br><span class="line"><span class="function"><span class="title">goto</span> :<span class="title">begin</span></span></span><br><span class="line"><span class="function">  )</span></span><br><span class="line"><span class="function">  </span></span><br><span class="line"><span class="function">  <span class="title">If</span> &quot;%<span class="title">Choice</span>%&quot;==&quot;1&quot; (</span></span><br><span class="line"><span class="function"><span class="title">Echo</span> <span class="title">on</span> </span></span><br><span class="line"><span class="function"><span class="title">git</span> <span class="title">pull</span> <span class="title">origin</span> <span class="title">master</span> </span></span><br><span class="line"><span class="function"><span class="title">pause</span> </span></span><br><span class="line"><span class="function"><span class="title">Echo</span> <span class="title">off</span> </span></span><br><span class="line"><span class="function"><span class="title">goto</span> :<span class="title">begin</span></span></span><br><span class="line"><span class="function">  )</span></span><br><span class="line"><span class="function">)</span></span><br><span class="line"><span class="function"><span class="title">Echo</span>. <span class="title">pause</span></span></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>爬了个虫</title>
+      <link href="/2019/06/15/%E5%B7%A5%E4%BD%9C%E8%AE%B0%E5%BD%95/%E7%88%AC%E4%BA%86%E4%B8%AA%E8%99%AB/"/>
+      <url>/2019/06/15/%E5%B7%A5%E4%BD%9C%E8%AE%B0%E5%BD%95/%E7%88%AC%E4%BA%86%E4%B8%AA%E8%99%AB/</url>
+      
+        <content type="html"><![CDATA[<h1 id="初始需求"><a href="#初始需求" class="headerlink" title="初始需求"></a>初始需求</h1><p>第一次接触到需求是要用到大量的成语、能区分出多音字</p><ul><li><p>自己首先想到的是GitHub，在GitHub上搜索了下，果然搜索到了好多成语的源</p><p>  在其中找了一个词库比较大的，下载了下来</p></li><li><p>然后找了几个汉字转拼音的网页，其中大多数不支持多音字</p><p>  最后找到了：<a href="http://www.zhuanpinyin.com/">http://www.zhuanpinyin.com</a></p></li><li><p>将所有的成语粘贴、转换；然后在Excel中使用if判断下，完活！</p></li></ul><h1 id="需求变更"><a href="#需求变更" class="headerlink" title="需求变更"></a>需求变更</h1><p>需求有了新的变更，要提供些成语的解释和故事</p><ul><li><p>起初是想到百度文档上找<br>但在上面找了一些之后，发现都不太好，要么是词量少，要么是东拼西凑的。</p></li><li><p>然后想在专业网站上找找。最终确定了：<a href="http://www.gushi51.com/">http://www.gushi51.com</a></p></li><li><p>上面大概有4000个成语故事，怎么将这4000个给搞下成了一个大问题。<br>  第一时间想到的是使用爬虫。<br>  直接使用python，是不太可能的。<br>  在几个爬虫软件中选择了八爪鱼，可视化操作，这点大大降低了门槛。</p></li><li><p>网页使用的是统一的模版，网址有规律<br>  直接使用八爪鱼的批量生成。<br>  开始自动流程。</p></li></ul><h1 id="新的问题"><a href="#新的问题" class="headerlink" title="新的问题"></a>新的问题</h1><p> 批量生成的网址大概2W+，实际可用的网址也就4000，在实际跑的过程有遇到了大量无效的网址。</p><ul><li><p>刚开始的时候，是观察网址段，将任务分解。<br>实际操作的过程中，实在是太多的段了，手动去操作能累死。</p></li><li><p>这些网页有目录页，现在打算从这方面做文章<br>  使用自动翻页，将所有的目录页，显示在同一个网页内。<br>  使用Link Grabber，将所有符合的链接提取出来。</p></li><li><p>再将这个链接放进入八爪鱼中。</p></li></ul><p>#现在问题算是基本完美的解决了！</p><p>#其他问题</p><ul><li>八爪鱼免费版本地跑到800条数据时，效率明显下降。</li><li>在笔记本上850条时就会偶现卡死，不过等待一段时间后还能响应，接近900时卡死只能结束进程了</li><li>台式机上坚持到了920条出现假死，接近1000时等待后还可响应</li></ul>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>在</title>
+      <link href="/2019/04/08/%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F/%E5%9C%A8/"/>
+      <url>/2019/04/08/%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F/%E5%9C%A8/</url>
+      
+        <content type="html"><![CDATA[<p>爱在</p><p>恨在</p><p>我在</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>那里</title>
+      <link href="/2019/03/16/%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F/%E9%82%A3%E9%87%8C/"/>
+      <url>/2019/03/16/%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F/%E9%82%A3%E9%87%8C/</url>
+      
+        <content type="html"><![CDATA[<p>爱在那里<br>恨在那里<br>我在这里</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>使工作中常用的软件</title>
+      <link href="/2017/04/15/%E5%B7%A5%E4%BD%9C%E8%AE%B0%E5%BD%95/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/"/>
+      <url>/2017/04/15/%E5%B7%A5%E4%BD%9C%E8%AE%B0%E5%BD%95/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/</url>
+      
+        <content type="html"><![CDATA[<ul><li><h1 id="picpick"><a href="#picpick" class="headerlink" title="picpick"></a>picpick</h1></li></ul><p>一款全能的设计工具，并且这款工具适宜每个人使用<br><a href="http://ngwin.com/picpick">http://ngwin.com/picpick</a><br>主要用来图片后期处理。</p><ul><li><h1 id="Snipaste"><a href="#Snipaste" class="headerlink" title="Snipaste"></a>Snipaste</h1></li></ul><p>截图+ 贴图<br><a href="https://zh.snipaste.com/index.html#">https://zh.snipaste.com/index.html#</a></p><ul><li><h1 id="LISTARY"><a href="#LISTARY" class="headerlink" title="LISTARY"></a>LISTARY</h1></li></ul><p>强大的本地文件搜索软件，比everthing好用。<br><a href="http://www.listary.com/">http://www.listary.com/</a></p><ul><li><h1 id="Ditto"><a href="#Ditto" class="headerlink" title="Ditto"></a>Ditto</h1></li></ul><p>剪切板记录管理软件<br><a href="http://ditto-cp.sourceforge.net/">http://ditto-cp.sourceforge.net/</a></p><ul><li><h1 id="DisplayFusion"><a href="#DisplayFusion" class="headerlink" title="DisplayFusion"></a>DisplayFusion</h1></li></ul><p>双显控制软件，还有其他功能增强<br><a href="https://www.displayfusion.com/">https://www.displayfusion.com/</a></p><ul><li><h1 id="MouseInc"><a href="#MouseInc" class="headerlink" title="MouseInc"></a>MouseInc</h1></li></ul><p>鼠标手势、按钮回显、OCR……<br><a href="https://shuax.com/project/mouseinc/">https://shuax.com/project/mouseinc/</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>关于刷机一些问题的记录</title>
+      <link href="/2015/11/24/%E4%B8%80%E4%BA%9B%E7%A0%94%E7%A9%B6/%E5%85%B3%E4%BA%8E%E5%88%B7%E6%9C%BA%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E7%9A%84%E8%AE%B0%E5%BD%95/"/>
+      <url>/2015/11/24/%E4%B8%80%E4%BA%9B%E7%A0%94%E7%A9%B6/%E5%85%B3%E4%BA%8E%E5%88%B7%E6%9C%BA%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E7%9A%84%E8%AE%B0%E5%BD%95/</url>
+      
+        <content type="html"><![CDATA[<pre><code>周末在家升级的时候，出现的提示大概是下面两个：error: can&#39;t load system.img error: update package missing system.img刷机一直报错can&#39;t load *.img,然后反复刷了几次还是有同样的问题。在下载完镜像包的时候，就比对了MD5、SHA-1，与官网是一致的。在刷机出错后，尝试在windows下加载system.img、bootloader.img的镜像，结果是无法加载，就一直以为是下载过程中出现了错误，然后用500K/S的小水管又下载了两次。后面又反复比对MD5、SHA-1还是与官网是一致的，用新下载的镜像包刷还是会出同样；这时开始怀疑线材的问题了，换了线还是出同样的问题。    然后以线材没有问题、镜像包是好的情况下怀疑adb的问题。但在重新下载adb后，解决了其它镜像包的问题，system.img依旧报错。  然后在网上搜索到解决方法是这样的：刷入 Android 5.0 镜像出错？手把手教你解决 missing system.img 错误 - 少数派：http://sspai.com/27429。实际照上面的解决方法做一遍后，还是会出同样的问题。      自己仔细查看了报错信息，有这么一行：failed to allcate * bytes。这时开始怀疑是system.img过大了，刷不进去。随手查看了下有1.9G。随后的角色方法是使用ADB命令将手机上的缓存什么的全部给清理了一遍。清理方法在这里：Fastboot工具以及Fastboot使用命令（适用于MOTOX和新Droid系列） | 幻境：http://www.xxmer.com/203.html但是在清理过后，还是会出现failed to allcate * bytes这样的问题。想了想应该是fastboot 命令不支持过大的Img文件。于是在网上搜索出了这个：How to Fix Nexus 6 Firmware Error! – “could not allocate 1778070480 bytes” | HighOnAndroid.com：http://highonandroid.com/android-smartphones/how-to-fix-nexus-6-firmware-error-could-not-allocate-1778070480-bytes/英文不好的可以继续看下面的解决方法：1. 首先下载这个文件：   http://downloadandroidrom.com/file/tools/mfastboot.zip2. 解压mfastboot.zip与fastboot同一个目录下。3. 使用mfastboot 命令刷system.img    For Widows:     mfastboot flash system system.img    For Mac OSX:    ./mfastboot-mac flash system system.img    For Linux/Ubuntu:sudo:    ./mfastboot-linux flash system system.img</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>SVN自动更新</title>
+      <link href="/2015/11/13/%E5%B7%A5%E4%BD%9C%E8%AE%B0%E5%BD%95/SVN%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0/"/>
+      <url>/2015/11/13/%E5%B7%A5%E4%BD%9C%E8%AE%B0%E5%BD%95/SVN%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0/</url>
+      
+        <content type="html"><![CDATA[<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">REM cd C:\Program Files\TortoiseSVN\bin</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">REM start TortoiseProc.exe /command:update /path:&quot;E:\1&quot; /closeonend:3</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">REM start TortoiseProc.exe /command:update /path:&quot;E:\2&quot; /closeonend:3</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">REM start TortoiseProc.exe /command:update /path:&quot;E:\3&quot; /closeonend:3</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">REM start TortoiseProc.exe /command:update /path:&quot;E:\4&quot; /closeonend:3</span></span><br><span class="line"></span><br><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"></span><br><span class="line"><span class="keyword">FOR</span> <span class="variable">%%A</span> <span class="keyword">IN</span> (</span><br><span class="line"> &quot;E:\<span class="number">1</span>&quot;</span><br><span class="line"></span><br><span class="line"> &quot;E:\<span class="number">2</span>&quot;</span><br><span class="line"></span><br><span class="line"> &quot;E:\<span class="number">3</span>&quot;</span><br><span class="line"></span><br><span class="line"> &quot;E:\<span class="number">4</span>&quot;</span><br><span class="line"></span><br><span class="line">) <span class="keyword">DO</span> <span class="built_in">START</span> TortoiseProc.exe /command:update /<span class="built_in">path</span>:<span class="variable">%%A</span> /closeonend:<span class="number">3</span></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>一些问题</title>
+      <link href="/2015/02/04/%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F/%E5%8F%AA%E8%A8%80%E7%89%87%E8%AF%AD/"/>
+      <url>/2015/02/04/%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F/%E5%8F%AA%E8%A8%80%E7%89%87%E8%AF%AD/</url>
+      
+        <content type="html"><![CDATA[<h1 id="2015-02-04-10-51"><a href="#2015-02-04-10-51" class="headerlink" title="2015-02-04 10:51"></a>2015-02-04 10:51</h1><ul><li><p>一句话，不同的人听能够理解成不同的意思。</p></li><li><p>我们天生的不同，在这世界上没有一个完完全全和你一样的人。每个人都是唯一。</p></li><li><p>唯一存在的我们时刻与这个世界同步着，不断地调整着。</p></li><li><p>因何而生，为何而战?</p></li><li><p>We are rule or power?</p></li><li><p>我们是规则还是力量？</p></li><li><p>我们是一个过程，还是一个状态？</p></li><li><p>we are nothing.</p></li><li><p>时间的本质是变化。光也是一种变化。</p></li><li><p>那里没有变化，那里没有时间。</p></li><li></li></ul><h1 id="2015-12-6-10-28"><a href="#2015-12-6-10-28" class="headerlink" title="2015-12-6 10:28"></a>2015-12-6 10:28</h1><ul><li>在时间的河流中，</li><li>如果我们是鱼则能逆流而上，</li><li>如果我们是水则无能为力</li></ul><h1 id="2016-06-18-06-48"><a href="#2016-06-18-06-48" class="headerlink" title="2016-06-18 06:48"></a>2016-06-18 06:48</h1><ul><li>思不同 而心异 而后度差 实则行迥</li></ul><h1 id="2019-06-18-20-15-21"><a href="#2019-06-18-20-15-21" class="headerlink" title="2019-06-18 20:15:21"></a>2019-06-18 20:15:21</h1><ul><li>生者自生，死者自死</li></ul><h1 id="2020-06-02-04-06"><a href="#2020-06-02-04-06" class="headerlink" title="2020-06-02 04:06"></a>2020-06-02 04:06</h1><p>+because her&#x2F;him,so we been</p><h1 id="2020-07-15-17-04-30"><a href="#2020-07-15-17-04-30" class="headerlink" title="2020-07-15 17:04:30"></a>2020-07-15 17:04:30</h1><hr><p>国力<br>是整合国内资源与国外竞争合作的能力</p><h1 id="2020-07-17-10-25-09"><a href="#2020-07-17-10-25-09" class="headerlink" title="2020-07-17 10:25:09"></a>2020-07-17 10:25:09</h1><hr><p>习惯养成的前提是目标的树立<br>好的游戏是要让玩家自己树立目标<br>而不是替玩家指定目标</p><h1 id="2020-07-18-08-08-03"><a href="#2020-07-18-08-08-03" class="headerlink" title="2020-07-18 08:08:03"></a>2020-07-18 08:08:03</h1><hr><p>撇捺可以感觉到大多数人是右撇子<br>一二三四五六七八九十<br>笔画最多的是四</p><h1 id="2020-07-23-10-55-23"><a href="#2020-07-23-10-55-23" class="headerlink" title="2020-07-23 10:55:23"></a>2020-07-23 10:55:23</h1><hr><p>看广告拿奖励的游戏是对游戏用户群体的拓展。</p><p>游戏行业规律：<br>第一阶段：全部玩家对游戏付费；<br>第二阶段：部分玩家对游戏付费；<br>第三阶段：全部玩家对游戏不付费，由外部付费。<br>第四阶段：？？？</p><p>推广开来，到其他行业：<br>第一阶段：我们产品服务的对象是用户。<br>第二阶段：我们产品服务对象是一部分用户，另外一部分用户辅助服务目标用户。<br>第三阶段：我们的用户是产品，我们原先的产品是辅助现在的产品的。</p><p>这个过程的前提是要有生产力过剩。</p><h1 id="2020-08-07-06-34-56"><a href="#2020-08-07-06-34-56" class="headerlink" title="2020-08-07 06:34:56"></a>2020-08-07 06:34:56</h1><hr><p>统治阶级的目的是统治国家<br>资本的目的是扩张</p><h1 id="2020-08-07-16-19-38"><a href="#2020-08-07-16-19-38" class="headerlink" title="2020-08-07 16:19:38"></a>2020-08-07 16:19:38</h1><hr><p>人的天性是在资源富裕时，积攒资源。这个会造成紧缩。<br>股市等一系列投资行为，诱使人们将钱花出去，避免了通货通货紧缩。<br>这个是现在世界的经济模型。</p><p>现在这个模型造成了</p><h1 id="2020-08-18-09-17-35"><a href="#2020-08-18-09-17-35" class="headerlink" title="2020-08-18 09:17:35"></a>2020-08-18 09:17:35</h1><hr><p>为什么现在这个世界的经济是通货膨胀的</p><h1 id="2020-08-25-07-56-48"><a href="#2020-08-25-07-56-48" class="headerlink" title="2020-08-25 07:56:48"></a>2020-08-25 07:56:48</h1><hr><p>美是生物本能+大脑修饰的产物<br>人美：代表着个体生存的可能性，和后代可能延续的特性<br>景美：对自身安全、未来资源的影响</p><h1 id="2020-08-29-07-53-35"><a href="#2020-08-29-07-53-35" class="headerlink" title="2020-08-29 07:53:35"></a>2020-08-29 07:53:35</h1><hr><p>信息变成知识<br>知识变成技能<br>技能变成思维模式<br>思维模式变成逻辑推理能力</p><h1 id="2020-09-07-16-11-13"><a href="#2020-09-07-16-11-13" class="headerlink" title="2020-09-07 16:11:13"></a>2020-09-07 16:11:13</h1><hr><p>人<br>物<br>信息</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>新的开始</title>
+      <link href="/2015/02/03/%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F/%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B/"/>
+      <url>/2015/02/03/%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F/%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B/</url>
+      
+        <content type="html"><![CDATA[<p>鱼也许就应该在水里。</p><p>一个上了岸的鱼还是鱼吗？<br>我时常这么问自己。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+  
+  
+</search>
