@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>关于刷机一些问题的记录 | 上岸的鱼</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="用户体验,设计,design" />
+  
+
+  <meta name="description" content="周末在家升级的时候，出现的提示大概是下面两个：error: can&#39;t load system.img error: update package missing system.img  刷机一直报错can&#39;t load *.img,然后反复刷了几次还是有同样的问题。在下载完镜像包的时候，就比对了MD5、SHA-1，与官网是一致的。在刷机出错后，尝试在windows下加载syste">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于刷机一些问题的记录">
+<meta property="og:url" content="http://example.com/2015/11/42a7e7f8ca47.html">
+<meta property="og:site_name" content="上岸的鱼">
+<meta property="og:description" content="周末在家升级的时候，出现的提示大概是下面两个：error: can&#39;t load system.img error: update package missing system.img  刷机一直报错can&#39;t load *.img,然后反复刷了几次还是有同样的问题。在下载完镜像包的时候，就比对了MD5、SHA-1，与官网是一致的。在刷机出错后，尝试在windows下加载syste">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2015-11-24T10:44:00.000Z">
+<meta property="article:modified_time" content="2023-03-08T10:59:30.646Z">
+<meta property="article:author" content="runking">
+<meta name="twitter:card" content="summary">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    
+<link rel="stylesheet" href="/css/personal-style.css">
+
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-38189205-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">首页</span>
+  
+
+  <div class="post-header LEFT">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">首页</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tags/index.html"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+
+
+<div class="content content-post LEFT">
+   <article id="post-关于刷机一些问题的记录" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">关于刷机一些问题的记录</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2015.11.24</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>runking</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/%E4%B8%80%E4%BA%9B%E7%A0%94%E7%A9%B6/">一些研究</a>
+  </span>
+
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <pre><code>周末在家升级的时候，出现的提示大概是下面两个：error: can&#39;t load system.img error: update package missing system.img
+
+刷机一直报错can&#39;t load *.img,然后反复刷了几次还是有同样的问题。在下载完镜像包的时候，就比对了MD5、SHA-1，与官网是一致的。在刷机出错后，尝试在windows下加载system.img、bootloader.img的镜像，结果是无法加载，就一直以为是下载过程中出现了错误，然后用500K/S的小水管又下载了两次。后面又反复比对MD5、SHA-1还是与官网是一致的，用新下载的镜像包刷还是会出同样；这时开始怀疑线材的问题了，换了线还是出同样的问题。    
+
+然后以线材没有问题、镜像包是好的情况下怀疑adb的问题。但在重新下载adb后，解决了其它镜像包的问题，system.img依旧报错。
+
+  然后在网上搜索到解决方法是这样的：刷入 Android 5.0 镜像出错？手把手教你解决 missing system.img 错误 - 少数派：http://sspai.com/27429。实际照上面的解决方法做一遍后，还是会出同样的问题。
+  
+    自己仔细查看了报错信息，有这么一行：failed to allcate * bytes。这时开始怀疑是system.img过大了，刷不进去。随手查看了下有1.9G。随后的角色方法是使用ADB命令将手机上的缓存什么的全部给清理了一遍。
+
+清理方法在这里：Fastboot工具以及Fastboot使用命令（适用于MOTOX和新Droid系列） | 幻境：http://www.xxmer.com/203.html
+
+但是在清理过后，还是会出现failed to allcate * bytes这样的问题。想了想应该是fastboot 命令不支持过大的Img文件。于是在网上搜索出了这个：How to Fix Nexus 6 Firmware Error! – “could not allocate 1778070480 bytes” | HighOnAndroid.com：http://highonandroid.com/android-smartphones/how-to-fix-nexus-6-firmware-error-could-not-allocate-1778070480-bytes/
+
+英文不好的可以继续看下面的解决方法：
+
+1. 首先下载这个文件：   http://downloadandroidrom.com/file/tools/mfastboot.zip
+
+2. 解压mfastboot.zip与fastboot同一个目录下。
+
+3. 使用mfastboot 命令刷system.img
+    For Widows:     mfastboot flash system system.img
+    For Mac OSX:    ./mfastboot-mac flash system system.img
+    For Linux/Ubuntu:sudo:    ./mfastboot-linux flash system system.img
+</code></pre>
+
+    
+  </div>
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2015/11/1578eea6272d.html">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2017/04/96517bc2a04f.html">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tags/index.html"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
