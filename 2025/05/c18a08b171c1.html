@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>Category: 学习 | 上岸的鱼</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="UE引擎," />
+  
+
+  <meta name="description" content="🪴 UE5 草不显示问题排查记录（Mac mini + 5.5.4）最近在用 Unreal Engine 5.5.4 做地形，想用 LandscapeGrassOutput 实现图层驱动自动刷草。材质节点、LandscapeGrassType、图层权重、Layer Info 都设置好了，图层也确实涂上了。 但草就是不显示。 我试了常规操作：  材质和图层名一致 ✅   GrassType 绑定">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UE5 草不显示问题排查记录">
+<meta property="og:url" content="http://example.com/2025/05/c18a08b171c1.html">
+<meta property="og:site_name" content="上岸的鱼">
+<meta property="og:description" content="🪴 UE5 草不显示问题排查记录（Mac mini + 5.5.4）最近在用 Unreal Engine 5.5.4 做地形，想用 LandscapeGrassOutput 实现图层驱动自动刷草。材质节点、LandscapeGrassType、图层权重、Layer Info 都设置好了，图层也确实涂上了。 但草就是不显示。 我试了常规操作：  材质和图层名一致 ✅   GrassType 绑定">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-05-21T02:50:27.000Z">
+<meta property="article:modified_time" content="2025-05-22T02:50:39.000Z">
+<meta property="article:author" content="runking">
+<meta property="article:tag" content="UE引擎">
+<meta name="twitter:card" content="summary">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    
+<link rel="stylesheet" href="/css/personal-style.css">
+
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-38189205-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">首页</span>
+  
+
+  <div class="post-header LEFT">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">首页</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tags/index.html"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%F0%9F%AA%B4-UE5-%E8%8D%89%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5%E8%AE%B0%E5%BD%95%EF%BC%88Mac-mini-5-5-4%EF%BC%89"><span class="toc-text">🪴 UE5 草不显示问题排查记录（Mac mini + 5.5.4）</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post LEFT">
+   <article id="post-UE引擎/UE5 草不显示问题排查记录" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">UE5 草不显示问题排查记录</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2025.05.21</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>runking</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/UE%E5%BC%95%E6%93%8E/">UE引擎</a>
+  </span>
+
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="🪴-UE5-草不显示问题排查记录（Mac-mini-5-5-4）"><a href="#🪴-UE5-草不显示问题排查记录（Mac-mini-5-5-4）" class="headerlink" title="🪴 UE5 草不显示问题排查记录（Mac mini + 5.5.4）"></a>🪴 UE5 草不显示问题排查记录（Mac mini + 5.5.4）</h1><p>最近在用 Unreal Engine 5.5.4 做地形，想用 <code>LandscapeGrassOutput</code> 实现图层驱动自动刷草。<br>材质节点、<code>LandscapeGrassType</code>、图层权重、Layer Info 都设置好了，图层也确实涂上了。</p>
+<p>但草就是不显示。</p>
+<p>我试了常规操作：</p>
+<ul>
+<li>材质和图层名一致 ✅  </li>
+<li>GrassType 绑定 ✅  </li>
+<li>图层有绘制 ✅  </li>
+<li>控制台尝试过：<br>```bash<br>r.Grass.Enable 1<br>grass.flushcache<br>dumpgrassmaps<br>全都没效果。</li>
+</ul>
+<p>💡 真正的原因<br>后来发现，是因为引擎当前处于 “Low” 性能模式。</p>
+<p>在 Low 模式下，Unreal 会自动把 r.Grass.Enable 设为 0，<br>即使控制台强制开启也会被下一帧覆盖。</p>
+<p>我把引擎切到 High 或 Epic 模式后，草立刻刷出来了。</p>
+<p>💻 补充：Mac 上使用 UE 的一些坑<br>我是在 Mac mini 上开发的，草系统这种依赖 GPU 实例化的功能<br>在 macOS + Metal 渲染器下表现经常不稳定。</p>
+<p>一些注意事项：</p>
+<p>GrassOutput 有时完全无效（尤其配合 Nanite Mesh）</p>
+<p>r.Grass.Enable 可能被忽略或不响应</p>
+<p>PCG 效果更可靠（推荐用于 Mac 项目）</p>
+<p>✅ 总结<br>如果你遇到 GrassOutput 不显示的问题：</p>
+<p>❓ 检查是不是 Low 模式</p>
+<p>✅ 设置 r.Grass.Enable=1（最好通过 .ini）</p>
+<p>⚠️ 在 Mac 上开发需特别小心 Grass 系统兼容性</p>
+<p>一句话总结：<br>UE 的 Low 模式默认禁用草系统，macOS 上更容易中招。别急着改材质，先调高性能档位。</p>
+
+    
+  </div>
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2024/04/94af8193961c.html">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="hide pull-right" href="/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tags/index.html"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
