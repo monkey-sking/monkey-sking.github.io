@@ -7,24 +7,25 @@
 <head>
   <meta charset="utf-8">
   
-  <title>未来趋势 | 上岸的鱼</title>
+  <title>Category: 学习 | 上岸的鱼</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="用户体验,设计,design" />
+    <meta name="keywords" content="UE引擎," />
   
 
-  <meta name="description" content="someone do something anywhere">
+  <meta name="description" content="Unreal Engine 5：Nanite 与 Fracture 不兼容问题总结在使用 Chaos Fracture 进行物体破坏时，如果出现以下问题：  看不到碎片（Exploded View 无效） 模拟或运行时无法破碎 碎片无法参与物理模拟  很可能是因为你的模型启用了 Nanite。 ❗ 问题原因Nanite 不支持运行时的网格拓扑变形，和 Chaos Fracture 系统不兼容。&amp;g">
 <meta property="og:type" content="article">
-<meta property="og:title" content="未来趋势">
-<meta property="og:url" content="http://example.com/2020/09/05e652879e37.html">
+<meta property="og:title" content="Nanite 与 Fracture 不兼容问题总结">
+<meta property="og:url" content="http://example.com/2025/05/d859c4df72b6.html">
 <meta property="og:site_name" content="上岸的鱼">
-<meta property="og:description" content="someone do something anywhere">
+<meta property="og:description" content="Unreal Engine 5：Nanite 与 Fracture 不兼容问题总结在使用 Chaos Fracture 进行物体破坏时，如果出现以下问题：  看不到碎片（Exploded View 无效） 模拟或运行时无法破碎 碎片无法参与物理模拟  很可能是因为你的模型启用了 Nanite。 ❗ 问题原因Nanite 不支持运行时的网格拓扑变形，和 Chaos Fracture 系统不兼容。&amp;g">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-09-13T09:39:31.000Z">
-<meta property="article:modified_time" content="2025-05-23T12:26:28.772Z">
+<meta property="article:published_time" content="2025-05-22T12:25:27.000Z">
+<meta property="article:modified_time" content="2025-05-23T12:26:28.572Z">
 <meta property="article:author" content="runking">
+<meta property="article:tag" content="UE引擎">
 <meta name="twitter:card" content="summary">
 
   
@@ -184,17 +185,22 @@ ga('send', 'pageview');
 </div>
 
 
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Unreal-Engine-5%EF%BC%9ANanite-%E4%B8%8E-Fracture-%E4%B8%8D%E5%85%BC%E5%AE%B9%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93"><span class="toc-text">Unreal Engine 5：Nanite 与 Fracture 不兼容问题总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9D%97-%E9%97%AE%E9%A2%98%E5%8E%9F%E5%9B%A0"><span class="toc-text">❗ 问题原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9C%85-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-text">✅ 解决方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8C-%E6%8F%90%E7%A4%BA"><span class="toc-text">📌 提示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%A0-%E6%80%BB%E7%BB%93%E8%A1%A8"><span class="toc-text">🧠 总结表</span></a></li></ol></li></ol>
+  </div>
+
 
 
 <div class="content content-post LEFT">
-   <article id="post-随想/未来趋势" class="article article-type-post" itemprop="blogPost">
+   <article id="post-UE引擎/Nanite 与 Fracture 不兼容问题总结" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">未来趋势</h1>
+    <h1 class="post-title">Nanite 与 Fracture 不兼容问题总结</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2020.09.13</span>
+        <span>2025.05.22</span>
       </span>
 
       
@@ -207,7 +213,7 @@ ga('send', 'pageview');
       
   <span class="article-category">
     <i class="icon-list"></i>
-    <a class="article-category-link" href="/categories/%E8%A1%8C%E8%80%85%E6%9C%89%E6%80%9D/">行者有思</a>
+    <a class="article-category-link" href="/categories/UE%E5%BC%95%E6%93%8E/">UE引擎</a>
   </span>
 
 
@@ -227,8 +233,44 @@ ga('send', 'pageview');
 
   <div class="article-content">
     
-      <hr>
-<p>someone do something anywhere</p>
+      <h1 id="Unreal-Engine-5：Nanite-与-Fracture-不兼容问题总结"><a href="#Unreal-Engine-5：Nanite-与-Fracture-不兼容问题总结" class="headerlink" title="Unreal Engine 5：Nanite 与 Fracture 不兼容问题总结"></a>Unreal Engine 5：Nanite 与 Fracture 不兼容问题总结</h1><p>在使用 Chaos Fracture 进行物体破坏时，如果出现以下问题：</p>
+<ul>
+<li>看不到碎片（Exploded View 无效）</li>
+<li>模拟或运行时无法破碎</li>
+<li>碎片无法参与物理模拟</li>
+</ul>
+<p>很可能是因为你的模型启用了 <strong>Nanite</strong>。</p>
+<h2 id="❗-问题原因"><a href="#❗-问题原因" class="headerlink" title="❗ 问题原因"></a>❗ 问题原因</h2><p>Nanite 不支持运行时的网格拓扑变形，和 Chaos Fracture 系统不兼容。&gt; “Nanite meshes cannot be fractured as the data representation is not compatible with Chaos destruction.” —— <a target="_blank" rel="noopener" href="https://forums.unrealengine.com/t/fracturing-nanite-meshes/2420606">官方论坛讨论原帖</a></p>
+<h2 id="✅-解决方法"><a href="#✅-解决方法" class="headerlink" title="✅ 解决方法"></a>✅ 解决方法</h2><ol>
+<li>找到原始 Static Mesh  </li>
+<li>右键关闭 Nanite</li>
+<li>保存并重新创建 Geometry Collection</li>
+</ol>
+<h2 id="📌-提示"><a href="#📌-提示" class="headerlink" title="📌 提示"></a>📌 提示</h2><ul>
+<li>启用了 Nanite 的模型在资源图标上有绿色闪电标志 ⚡</li>
+<li>关闭 Nanite 后必须重新创建 GC，旧的无效</li>
+</ul>
+<h2 id="🧠-总结表"><a href="#🧠-总结表" class="headerlink" title="🧠 总结表"></a>🧠 总结表</h2><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>是否支持</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Nanite 支持高效渲染</td>
+<td>✅ 支持</td>
+</tr>
+<tr>
+<td>Nanite Mesh 支持 Fracture</td>
+<td>❌ 不支持</td>
+</tr>
+<tr>
+<td>正确做法：关闭 Nanite 再破碎</td>
+<td>✅ 推荐</td>
+</tr>
+</tbody></table>
+<p>记住一句话：<strong>要做破碎，先关 Nanite</strong></p>
 
     
   </div>
@@ -240,10 +282,10 @@ ga('send', 'pageview');
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2020/09/e763c756e51f.html">
+    <a class="show pull-left" href="/2025/05/c18a08b171c1.html">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/2020/09/57e8f21d170f.html">
+    <a class="hide pull-right" href="/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
