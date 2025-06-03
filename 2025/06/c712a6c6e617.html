@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用剪贴板快速重命名文件的 Bash 脚本（macOS） | 上岸的鱼</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="bash,macOS,自动化,rename," />
+  
+
+  <meta name="description" content="这段 Bash 脚本可以帮你快速完成：它会将选中的文件重命名为 剪贴板中的内容，并保留原扩展名。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用剪贴板快速重命名文件的 Bash 脚本（macOS）">
+<meta property="og:url" content="http://example.com/2025/06/c712a6c6e617.html">
+<meta property="og:site_name" content="上岸的鱼">
+<meta property="og:description" content="这段 Bash 脚本可以帮你快速完成：它会将选中的文件重命名为 剪贴板中的内容，并保留原扩展名。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/3ce60db25e90c5ea3197adf4061e85eb_MD5.jpeg">
+<meta property="article:published_time" content="2025-06-03T10:45:00.000Z">
+<meta property="article:modified_time" content="2025-06-03T11:14:03.949Z">
+<meta property="article:author" content="runking">
+<meta property="article:tag" content="bash">
+<meta property="article:tag" content="macOS">
+<meta property="article:tag" content="自动化">
+<meta property="article:tag" content="rename">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/3ce60db25e90c5ea3197adf4061e85eb_MD5.jpeg">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    
+<link rel="stylesheet" href="/css/personal-style.css">
+
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-38189205-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">首页</span>
+  
+
+  <div class="post-header LEFT">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">首页</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tags/index.html"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%A0-%E8%84%9A%E6%9C%AC%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%BB%8D"><span class="toc-text">🧠 脚本功能介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9C%85-%E5%8A%9F%E8%83%BD%E8%AF%B4%E6%98%8E"><span class="toc-text">✅ 功能说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%9B%A0-%E9%85%8D%E7%BD%AE%E6%AD%A5%E9%AA%A4%E6%80%BB%E7%BB%93"><span class="toc-text">🛠 配置步骤总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%88%9B%E5%BB%BA-Automator-%E5%BF%AB%E6%8D%B7%E6%93%8D%E4%BD%9C"><span class="toc-text">1. 创建 Automator 快捷操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%AE%BE%E7%BD%AE%E9%A1%B6%E9%83%A8%E9%80%89%E9%A1%B9%EF%BC%9A"><span class="toc-text">2. 设置顶部选项：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%84%9A%E6%9C%AC%E6%BA%90%E7%A0%81"><span class="toc-text">3. 脚本源码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8E%B9-%E8%AE%BE%E7%BD%AE%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="toc-text">🎹 设置快捷键</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9C%85-%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="toc-text">✅ 使用方式</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post LEFT">
+   <article id="post-使用剪贴板快速重命名文件的-Bash-脚本（macOS）" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">使用剪贴板快速重命名文件的 Bash 脚本（macOS）</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2025.06.03</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>runking</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/%E8%84%9A%E6%9C%AC%E6%8A%80%E5%B7%A7/">脚本技巧</a>
+  </span>
+
+
+
+      
+
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>这段 Bash 脚本可以帮你快速完成：它会将选中的文件重命名为 <strong>剪贴板中的内容</strong>，并保留原扩展名。</p>
+<span id="more"></span>
+
+<h2 id="🧠-脚本功能介绍"><a href="#🧠-脚本功能介绍" class="headerlink" title="🧠 脚本功能介绍"></a>🧠 脚本功能介绍</h2><h2 id="✅-功能说明"><a href="#✅-功能说明" class="headerlink" title="✅ 功能说明"></a>✅ 功能说明</h2><blockquote>
+<p><strong>选中文件 → 复制一段文字 → 快捷操作 → 文件被重命名为剪贴板内容，保留扩展名</strong></p>
+</blockquote>
+<ul>
+<li>如果目标文件名已存在，会自动覆盖（不会弹出确认窗口）</li>
+</ul>
+<h2 id="🛠-配置步骤总结"><a href="#🛠-配置步骤总结" class="headerlink" title="🛠 配置步骤总结"></a>🛠 配置步骤总结</h2><p>[[media/3ce60db25e90c5ea3197adf4061e85eb_MD5.jpeg|Open: Pasted image 20250603190635.png]]<br><img src="/images/3ce60db25e90c5ea3197adf4061e85eb_MD5.jpeg"></p>
+<h3 id="1-创建-Automator-快捷操作"><a href="#1-创建-Automator-快捷操作" class="headerlink" title="1. 创建 Automator 快捷操作"></a>1. 创建 Automator 快捷操作</h3><ul>
+<li>打开 <strong>Automator.app</strong></li>
+<li>新建文稿 → 选择 <strong>“快速操作（Quick Action）”</strong><h3 id="2-设置顶部选项："><a href="#2-设置顶部选项：" class="headerlink" title="2. 设置顶部选项："></a>2. 设置顶部选项：</h3></li>
+<li><strong>Workflow receives current</strong>：<code>files or folders</code></li>
+<li><strong>in</strong>：<code>Finder</code></li>
+<li>✅ 非常重要！<h3 id="3-脚本源码"><a href="#3-脚本源码" class="headerlink" title="3. 脚本源码"></a>3. 脚本源码</h3></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">clipboard=$(pbpaste)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 限制剪贴板最大长度（你可以自定义，默认100字符）</span></span><br><span class="line">max_length=100</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$&#123;#clipboard&#125;</span> -gt <span class="variable">$max_length</span> ]; <span class="keyword">then</span></span><br><span class="line">    osascript -e <span class="string">&quot;display dialog \&quot;剪贴板内容过长（<span class="variable">$&#123;#clipboard&#125;</span> 字符）！请缩短后重试。\&quot; buttons &#123;\&quot;好\&quot;&#125; with icon caution&quot;</span></span><br><span class="line">    <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 清除非法字符</span></span><br><span class="line">safe_clipboard=$(<span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$clipboard</span>&quot;</span> | sed <span class="string">&#x27;s#[\\/:&quot;*?&lt;&gt;|]#_#g&#x27;</span> | xargs)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否添加时间戳</span></span><br><span class="line">add_timestamp=<span class="literal">false</span></span><br><span class="line">timestamp=$(<span class="built_in">date</span> +<span class="string">&quot;%Y%m%d_%H%M%S&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> f <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$@</span>&quot;</span>; <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">dir</span>=$(<span class="built_in">dirname</span> <span class="string">&quot;<span class="variable">$f</span>&quot;</span>)</span><br><span class="line">    filename=$(<span class="built_in">basename</span> <span class="string">&quot;<span class="variable">$f</span>&quot;</span>)</span><br><span class="line">    ext=<span class="string">&quot;<span class="variable">$&#123;filename##*.&#125;</span>&quot;</span></span><br><span class="line">    name=<span class="string">&quot;<span class="variable">$&#123;filename%.*&#125;</span>&quot;</span></span><br><span class="line"></span><br><span class="line">    newbase=<span class="string">&quot;<span class="variable">$safe_clipboard</span>&quot;</span></span><br><span class="line">    <span class="keyword">if</span> <span class="variable">$add_timestamp</span>; <span class="keyword">then</span></span><br><span class="line">        newbase=<span class="string">&quot;<span class="variable">$&#123;newbase&#125;</span>_<span class="variable">$&#123;timestamp&#125;</span>&quot;</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">    newname=<span class="string">&quot;<span class="variable">$newbase</span>.<span class="variable">$ext</span>&quot;</span></span><br><span class="line">    i=1</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> [ -e <span class="string">&quot;<span class="variable">$dir</span>/<span class="variable">$newname</span>&quot;</span> ]; <span class="keyword">do</span></span><br><span class="line">        newname=<span class="string">&quot;<span class="variable">$&#123;newbase&#125;</span>_<span class="variable">$i</span>.<span class="variable">$ext</span>&quot;</span></span><br><span class="line">        ((i++))</span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;➡️ <span class="variable">$filename</span> → <span class="variable">$newname</span>&quot;</span></span><br><span class="line">    <span class="built_in">mv</span> <span class="string">&quot;<span class="variable">$f</span>&quot;</span> <span class="string">&quot;<span class="variable">$dir</span>/<span class="variable">$newname</span>&quot;</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="🎹-设置快捷键"><a href="#🎹-设置快捷键" class="headerlink" title="🎹 设置快捷键"></a>🎹 设置快捷键</h2><ul>
+<li>保存为：<code>Rename from Clipboard</code></li>
+<li>打开：<strong>系统设置 → 键盘 → 键盘快捷键 → 快捷操作</strong></li>
+<li>找到 <code>Rename from Clipboard</code></li>
+<li>分配快捷键，如：<code>⌃⌥⌘R</code></li>
+</ul>
+<h2 id="✅-使用方式"><a href="#✅-使用方式" class="headerlink" title="✅ 使用方式"></a>✅ 使用方式</h2><ol>
+<li>在 Finder 中选中一个文件</li>
+<li>复制一段文字到剪贴板（如“日报_0603”）</li>
+<li>快捷操作运行后，该文件会被重命名为“日报_0603.原扩展名”</li>
+</ol>
+
+    
+  </div>
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2025/06/667e3e4571cb.html">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="hide pull-right" href="/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tags/index.html"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

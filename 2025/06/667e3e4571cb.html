@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>hexo更新blog | 上岸的鱼</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="hexo,自动化脚本,博客部署,Obsidian,批处理,文件同步," />
+  
+
+  <meta name="description" content="代码如下： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo更新blog">
+<meta property="og:url" content="http://example.com/2025/06/667e3e4571cb.html">
+<meta property="og:site_name" content="上岸的鱼">
+<meta property="og:description" content="代码如下： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-06-03T10:40:21.000Z">
+<meta property="article:modified_time" content="2025-06-03T11:14:03.959Z">
+<meta property="article:author" content="runking">
+<meta property="article:tag" content="hexo">
+<meta property="article:tag" content="自动化脚本">
+<meta property="article:tag" content="博客部署">
+<meta property="article:tag" content="Obsidian">
+<meta property="article:tag" content="批处理">
+<meta property="article:tag" content="文件同步">
+<meta name="twitter:card" content="summary">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    
+<link rel="stylesheet" href="/css/personal-style.css">
+
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-38189205-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">首页</span>
+  
+
+  <div class="post-header LEFT">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">首页</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tags/index.html"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+
+
+<div class="content content-post LEFT">
+   <article id="post-mac-版hexo更新blog" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">hexo更新blog</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2025.06.03</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>runking</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%B7%A5%E5%85%B7/">技术工具</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%B7%A5%E5%85%B7/%E5%8D%9A%E5%AE%A2%E7%AE%A1%E7%90%86/">博客管理</a>
+  </span>
+
+
+
+      
+
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>代码如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">====== 配置路径 ======</span></span><br><span class="line">source_folder=&quot;$HOME/Library/Obsidian/1-blog&quot;</span><br><span class="line">destination_folder=&quot;$HOME/blog/source/_posts&quot;</span><br><span class="line">image_folder=&quot;$HOME/Library/blog/source/images&quot;</span><br><span class="line">hexo_root=&quot;$HOME/Library/blog&quot;</span><br><span class="line">log_file=&quot;$hexo_root/deploy.log&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">====== 参数处理 ======</span></span><br><span class="line">PREVIEW=false</span><br><span class="line">BACKUP=false</span><br><span class="line">for arg in &quot;$@&quot;; do</span><br><span class="line">  case $arg in</span><br><span class="line">    --preview) PREVIEW=true ;;</span><br><span class="line">    --backup) BACKUP=true ;;</span><br><span class="line">  esac</span><br><span class="line">done</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">====== 日志函数 ======</span></span><br><span class="line">log() &#123;</span><br><span class="line">  echo &quot;[$(date +&#x27;%Y-%m-%d %H:%M:%S&#x27;)] $*&quot; | tee -a &quot;$log_file&quot;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">====== 检查 SSH 连接 ======</span></span><br><span class="line">log &quot;🔐 检查 GitHub SSH 连接...&quot;</span><br><span class="line">if ! ssh -T git@github.com 2&gt;&amp;1 | grep -q &quot;successfully authenticated&quot;; then</span><br><span class="line">  log &quot;❌ SSH 未配置或连接失败！请先配置 GitHub SSH key：https://github.com/settings/keys&quot;</span><br><span class="line">  exit 1</span><br><span class="line">fi</span><br><span class="line">log &quot;✅ SSH 连接正常&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">====== 可选备份 ======</span></span><br><span class="line">if $BACKUP; then</span><br><span class="line">  backup_zip=&quot;$HOME/Desktop/1-blog-backup_$(date +&#x27;%Y%m%d-%H%M%S&#x27;).zip&quot;</span><br><span class="line">  log &quot;🗃️ 正在备份 Obsidian 博客目录...&quot;</span><br><span class="line">  zip -r &quot;$backup_zip&quot; &quot;$source_folder&quot; &gt;/dev/null</span><br><span class="line">  log &quot;✅ 已备份到桌面：$backup_zip&quot;</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">====== 确保目录存在 ======</span></span><br><span class="line">mkdir -p &quot;$destination_folder&quot;</span><br><span class="line">mkdir -p &quot;$image_folder&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">====== 增量同步 Markdown 和图片文件 ======</span></span><br><span class="line">log &quot;📥 增量同步 Markdown 和图片...&quot;</span><br><span class="line">rsync -av --include=&quot;*/&quot; \</span><br><span class="line">          --include=&quot;*.md&quot; \</span><br><span class="line">          --include=&quot;*.png&quot; \</span><br><span class="line">          --include=&quot;*.jpg&quot; \</span><br><span class="line">          --include=&quot;*.jpeg&quot; \</span><br><span class="line">          --include=&quot;*.gif&quot; \</span><br><span class="line">          --include=&quot;*.svg&quot; \</span><br><span class="line">          --include=&quot;*.webp&quot; \</span><br><span class="line">          --exclude=&quot;*&quot; \</span><br><span class="line">          &quot;$source_folder&quot;/ &quot;$destination_folder&quot;/</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">====== 替换图片语法 &amp; 拷贝图片 ======</span></span><br><span class="line">log &quot;🛠 替换 Obsidian 图片语法，并复制图片...&quot;</span><br><span class="line"></span><br><span class="line">find &quot;$destination_folder&quot; -name &quot;*.md&quot; | while read -r mdfile; do</span><br><span class="line">  rel_md_path=&quot;$&#123;mdfile#$destination_folder/&#125;&quot;</span><br><span class="line">  original_md=&quot;$source_folder/$rel_md_path&quot;</span><br><span class="line">  original_md_dir=$(dirname &quot;$original_md&quot;)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">查找 Obsidian 图片语法</span></span><br><span class="line">  perl -nle &#x27;print $1 while /\!\[\[\s*(.*?)\s*\]\]/g&#x27; &quot;$mdfile&quot; | while read -r relimg; do</span><br><span class="line">    imgname=$(basename &quot;$relimg&quot;)</span><br><span class="line">    src_img=&quot;$original_md_dir/$relimg&quot;</span><br><span class="line">    dest_img=&quot;$image_folder/$imgname&quot;</span><br><span class="line"></span><br><span class="line">    if [[ -f &quot;$src_img&quot; ]]; then</span><br><span class="line">      # 增量复制</span><br><span class="line">      if [[ ! -f &quot;$dest_img&quot; ]]; then</span><br><span class="line">        cp &quot;$src_img&quot; &quot;$dest_img&quot;</span><br><span class="line">        log &quot;🖼 已复制图片: $src_img -&gt; $dest_img&quot;</span><br><span class="line">      fi</span><br><span class="line">    else</span><br><span class="line">      log &quot;⚠️ 图片未找到: $src_img&quot;</span><br><span class="line">    fi</span><br><span class="line">  done</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">替换 Obsidian 语法为 Hexo 路径</span></span><br><span class="line">  perl -i -pe &#x27;s/\!\[\[\s*(.*?)\s*\]\]/![]\(\/images\/\1\)/g&#x27; &quot;$mdfile&quot;</span><br><span class="line">  perl -i -pe &#x27;s/\/images\/.*\/([^\/]+\.(png|jpg|jpeg|gif|svg|webp))/\/images\/$1/g&#x27; &quot;$mdfile&quot;</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">log &quot;✅ 图片路径修复完成&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">====== Hexo 构建或预览 ======</span></span><br><span class="line">cd &quot;$hexo_root&quot; || &#123; log &quot;❌ Hexo 根目录不存在&quot;; exit 1; &#125;</span><br><span class="line"></span><br><span class="line">log &quot;🧹 Hexo 清理 &amp; 生成中...&quot;</span><br><span class="line">hexo clean &amp;&amp; hexo generate</span><br><span class="line"></span><br><span class="line">if $PREVIEW; then</span><br><span class="line">  log &quot;🌐 启动本地预览...&quot;</span><br><span class="line">  hexo server &amp;</span><br><span class="line">  sleep 2</span><br><span class="line">  open &quot;http://localhost:4000&quot;</span><br><span class="line">  log &quot;✅ 浏览器已打开本地预览&quot;</span><br><span class="line">else</span><br><span class="line">  log &quot;🚀 正在部署 Hexo 博客...&quot;</span><br><span class="line">  hexo deploy &amp;&amp; log &quot;✅ 部署完成&quot;</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+    
+  </div>
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2025/05/d859c4df72b6.html">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2025/06/c712a6c6e617.html">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tags/index.html"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
