@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>多显示器环境下，向特定程序发送空格键并恢复焦点（Quark 网盘） | 上岸的鱼</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="macOS,自动化,Hammerspoon,多显示器,Quark," />
+  
+
+  <meta name="description" content="最近在使用夸克看教程，需要频繁地暂停并跟着视频做。当前夸克是不支持通过媒体按键控制播放和暂停的，只能使用空格控制，并只有获取到焦点时才能生效。  现在需要无需切换光标或窗口，就能对另一个屏幕上的程序发送控制命令（如播放&#x2F;暂停）。  以 macOS 为例，使用 Hammerspoon 实现以下自动化流程：  聚焦某个程序（如 Quark 网盘） 向其发送空格键（控制播放&#x2F;暂停） 然后自动恢复原程序焦">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多显示器环境下，向特定程序发送空格键并恢复焦点（Quark 网盘）">
+<meta property="og:url" content="http://example.com/2025/06/c9a0f700801f.html">
+<meta property="og:site_name" content="上岸的鱼">
+<meta property="og:description" content="最近在使用夸克看教程，需要频繁地暂停并跟着视频做。当前夸克是不支持通过媒体按键控制播放和暂停的，只能使用空格控制，并只有获取到焦点时才能生效。  现在需要无需切换光标或窗口，就能对另一个屏幕上的程序发送控制命令（如播放&#x2F;暂停）。  以 macOS 为例，使用 Hammerspoon 实现以下自动化流程：  聚焦某个程序（如 Quark 网盘） 向其发送空格键（控制播放&#x2F;暂停） 然后自动恢复原程序焦">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-06-06T09:00:07.000Z">
+<meta property="article:modified_time" content="2025-06-06T11:46:46.284Z">
+<meta property="article:author" content="runking">
+<meta property="article:tag" content="macOS">
+<meta property="article:tag" content="自动化">
+<meta property="article:tag" content="Hammerspoon">
+<meta property="article:tag" content="多显示器">
+<meta property="article:tag" content="Quark">
+<meta name="twitter:card" content="summary">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    
+<link rel="stylesheet" href="/css/personal-style.css">
+
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-38189205-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="上岸的鱼" type="application/atom+xml">
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">首页</span>
+  
+
+  <div class="post-header LEFT">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">首页</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tags/index.html"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%9B%A0%EF%B8%8F-%E5%B7%A5%E5%85%B7%E5%87%86%E5%A4%87"><span class="toc-text">🛠️ 工具准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%92%A1-%E5%AE%9E%E7%8E%B0%E9%80%BB%E8%BE%91"><span class="toc-text">💡 实现逻辑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9C-%E8%84%9A%E6%9C%AC%E4%BB%A3%E7%A0%81"><span class="toc-text">📜 脚本代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9C%85-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E"><span class="toc-text">✅ 使用说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%A7-%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82%E4%BC%98%E5%8C%96"><span class="toc-text">🔧 技术细节优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%BE-%E6%80%BB%E7%BB%93"><span class="toc-text">🧾 总结</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post LEFT">
+   <article id="post-向特定程序发送空格键并恢复焦点" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">多显示器环境下，向特定程序发送空格键并恢复焦点（Quark 网盘）</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2025.06.06</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>runking</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%B7%A5%E5%85%B7/">自动化工具</a>
+  </span>
+
+
+
+      
+
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>最近在使用夸克看教程，需要频繁地暂停并跟着视频做。当前夸克是不支持通过媒体按键控制播放和暂停的，只能使用空格控制，并只有获取到焦点时才能生效。</p>
+<blockquote>
+<p><strong><strong>现在需要无需切换光标或窗口，就能对另一个屏幕上的程序发送控制命令（如播放/暂停）</strong></strong>。</p>
+</blockquote>
+<p>以 macOS 为例，使用 <strong><strong>Hammerspoon</strong></strong> 实现以下自动化流程：</p>
+<ul>
+<li>聚焦某个程序（如 Quark 网盘）</li>
+<li>向其发送空格键（控制播放/暂停）</li>
+<li>然后自动<strong><strong>恢复原程序焦点与鼠标位置</strong></strong></li>
+</ul>
+<h2 id="🛠️-工具准备"><a href="#🛠️-工具准备" class="headerlink" title="🛠️ 工具准备"></a>🛠️ 工具准备</h2><ul>
+<li><strong><strong>Hammerspoon</strong></strong>：macOS 上强大的自动化与快捷键工具  <br>  官网：<a target="_blank" rel="noopener" href="https://www.hammerspoon.org/">https://www.hammerspoon.org</a></li>
+</ul>
+<h2 id="💡-实现逻辑"><a href="#💡-实现逻辑" class="headerlink" title="💡 实现逻辑"></a>💡 实现逻辑</h2><ol>
+<li>使用快捷键（如 <code>Option + 空格</code>）触发脚本  </li>
+<li>记录当前前台应用与鼠标位置  </li>
+<li>激活目标程序（Quark 网盘）并发送空格键  </li>
+<li><strong><strong>智能判断</strong></strong>鼠标是否移动，决定是否恢复位置  </li>
+<li>切回原程序</li>
+</ol>
+<h2 id="📜-脚本代码"><a href="#📜-脚本代码" class="headerlink" title="📜 脚本代码"></a>📜 脚本代码</h2><p>将以下代码添加到你的 <code>~/.hammerspoon/init.lua</code> 中：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">hs.hotkey.bind(&#123;<span class="string">&quot;alt&quot;</span>&#125;, <span class="string">&quot;space&quot;</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span></span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">local</span> quarkAppName = <span class="string">&quot;Quark&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">local</span> frontApp = hs.application.frontmostApplication()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">local</span> originalMousePos = hs.mouse.getAbsolutePosition()</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">    <span class="keyword">local</span> quarkApp = hs.application.<span class="built_in">find</span>(quarkAppName)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> quarkApp <span class="keyword">then</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">local</span> win = quarkApp:mainWindow()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> win <span class="keyword">then</span></span><br><span class="line"></span><br><span class="line">            quarkApp:activate(<span class="literal">true</span>)</span><br><span class="line"></span><br><span class="line">            win:focus()</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">            hs.timer.doAfter(<span class="number">0.2</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span></span></span><br><span class="line"></span><br><span class="line">                hs.eventtap.event.newKeyEvent(&#123;&#125;, <span class="string">&quot;space&quot;</span>, <span class="literal">true</span>):post()</span><br><span class="line"></span><br><span class="line">                hs.eventtap.event.newKeyEvent(&#123;&#125;, <span class="string">&quot;space&quot;</span>, <span class="literal">false</span>):post()</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">                hs.timer.doAfter(<span class="number">0.3</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span></span></span><br><span class="line"></span><br><span class="line">                    <span class="keyword">if</span> frontApp <span class="keyword">then</span> frontApp:activate(<span class="literal">true</span>) <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">                    <span class="comment">-- 检测鼠标是否移动，如果没有再恢复位置</span></span><br><span class="line"></span><br><span class="line">                    <span class="keyword">local</span> currentMousePos = hs.mouse.getAbsolutePosition()</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">local</span> dx = <span class="built_in">math</span>.<span class="built_in">abs</span>(currentMousePos.x - originalMousePos.x)</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">local</span> dy = <span class="built_in">math</span>.<span class="built_in">abs</span>(currentMousePos.y - originalMousePos.y)</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">if</span> dx &lt; <span class="number">5</span> <span class="keyword">and</span> dy &lt; <span class="number">5</span> <span class="keyword">then</span></span><br><span class="line"></span><br><span class="line">                        hs.mouse.setAbsolutePosition(originalMousePos)</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">                <span class="keyword">end</span>)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">end</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line"></span><br><span class="line">            hs.alert(<span class="string">&quot;未找到 Quark 窗口&quot;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line"></span><br><span class="line">        hs.alert(<span class="string">&quot;未找到 Quark 应用&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="✅-使用说明"><a href="#✅-使用说明" class="headerlink" title="✅ 使用说明"></a>✅ 使用说明</h2><ol>
+<li>启动 Quark 网盘并加载播放界面</li>
+<li>回到其他应用继续工作（如浏览器、VS Code）</li>
+<li>按下 <code>Option + 空格</code><br>   - 自动切换至 Quark<br>   - 空格键触发播放/暂停<br>   - 稍后自动回到原应用<br>   - 如果鼠标没动，还原到原本的鼠标位置<h2 id="🔧-技术细节优化"><a href="#🔧-技术细节优化" class="headerlink" title="🔧 技术细节优化"></a>🔧 技术细节优化</h2></li>
+</ol>
+<ul>
+<li>使用 <code>hs.eventtap.event.newKeyEvent()</code>，更底层模拟空格键，更兼容 Electron 应用（如 Quark 网盘）</li>
+<li><code>app:activate(true)</code> + <code>win:focus()</code> 保证窗口成为第一响应者</li>
+<li>鼠标恢复前做<strong><strong>位置差判断</strong></strong>，避免“跳回”造成干扰</li>
+</ul>
+<h2 id="🧾-总结"><a href="#🧾-总结" class="headerlink" title="🧾 总结"></a>🧾 总结</h2><p>通过 Hammerspoon 脚本，可以在 macOS 上无感控制任意 App。即使是在多屏使用场景，也能做到。</p>
+<blockquote>
+<p>不打断当前任务，一键遥控另一个程序行为。<br>自动化提升的不只是效率，更是专注力。</p>
+</blockquote>
+
+    
+  </div>
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2025/06/c712a6c6e617.html">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="hide pull-right" href="/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tags/index.html"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
